@@ -7,7 +7,7 @@
         <p style="padding-bottom: 3px;">{{ comment.body }}</p>
         <div class="flex space-between">
             <!--add likes count-->
-            <p style="font-size: 14px;">likes 14</p>
+            <!--<p style="font-size: 14px;">likes 14</p>-->
             <div v-if="comment.is_mine" class="flex flex-end has-text-grey">
                 <!--<p style="font-size: 14px; margin-right: 5px;">수정</p>-->
                 <!--<p style="font-size: 14px; margin-right: 5px;">|</p>-->
