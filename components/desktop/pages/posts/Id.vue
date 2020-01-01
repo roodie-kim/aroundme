@@ -1,0 +1,86 @@
+<template>
+    <div class="container" style="margin: 0 15px 10px;">
+        <p @click="backToList">목록으로 돌아가기</p>
+        <div class="header"
+             style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
+            <p class="has-text-black-ter"
+               style="font-size: 16px; font-weight: 600">
+                {{ post.title }}기
+            </p>
+            <div class="flex space-between align-items-center has-text-grey"
+                 style="margin-top: 2px; font-size: 14px;">
+                <p>{{ user.name }}</p>
+                <div class="flex flex-end">
+                    <p @click="editPost()"
+                       style="margin-right: 5px; cursor: pointer;">
+                        수정
+                    </p>
+                    <p style="margin-right: 5px;">|</p>
+                    <p @click="deletePost()"
+                       style="margin-right: 5px; cursor: pointer;">
+                        삭제
+                    </p>
+                    <p style="margin-right: 5px;">|</p>
+                    <p>{{ post.created_at | humanTimestamp }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ql-editor"
+             style="min-height: 300px; padding-bottom: 50px;"
+             v-html="postBody">
+        </div>
+        <comments-list></comments-list>
+    </div>
+</template>
+
+<script>
+import CommentsList from './comments/commentsList'
+export default {
+    components: {
+        CommentsList,
+    },
+    data () {
+        return {
+            quill: null,
+        }
+    },
+    computed: {
+        post () {
+            return this.$store.state.posts.post
+        },
+        postBody () {
+            if (!this.quill || !this.post) return ''
+            try {
+                this.quill.setContents(JSON.parse(this.post.body))
+                return this.quill.root.innerHTML
+            } catch (e) {
+                this.quill.setText(this.post.body)
+                return this.quill.root.innerHTML
+            }
+        },
+    },
+    methods: {
+        editPost () {
+            this.$router.push(`/posts/${this.post.id}/edit`)
+        },
+        async deletePost () {
+            const response = await this.$store.dispatch('posts/deletePost', this.post.id)
+            if (response.status) {
+                this.$router.go(-1)
+            }
+        },
+        backToList () {
+            this.$router.go(-1)
+        },
+    },
+    mounted () {
+        const Quill = require('Quill')
+        const tempContainer = document.createElement('div')
+        this.quill = new Quill(tempContainer)
+    },
+}
+</script>
+
+<style scoped>
+
+</style>

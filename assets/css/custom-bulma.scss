@@ -1,0 +1,42 @@
+// Import Bulma's core
+@import "../../node_modules/bulma/sass/utilities/all";
+
+// Set your colors
+$primary: #283593;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+$link-color: #1394F6;
+$link-color-invert: findColorInvert($link-color);
+$warm-red: #FF5722;
+$warm-red-invert: findColorInvert($warm-red);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "warm-red": ($warm-red, $warm-red-invert),
+    "twitter": ($twitter, $twitter-invert),
+);
+
+$input-border-color: #cccccc;
+
+// Links
+$link: $link-color;
+$link-invert: $link-color-invert;
+$link-focus-border: $link-color;
+
+// breakpoint
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Import Bulma and Buefy styles
+@import "../../node_modules/bulma";
+@import "../../node_modules/buefy/src/scss/buefy";

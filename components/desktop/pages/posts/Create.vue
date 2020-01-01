@@ -1,0 +1,128 @@
+<template>
+    <div class="container">
+        <h4 class="title is-size-4">새글쓰기</h4>
+        <input class="input title-input" placeholder="제목" v-model="post.title"></input>
+        <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
+        <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
+        <input class="input title-input" placeholder="제목" v-model="tags"></input>
+        <div class="flex" style="flex-wrap: wrap;">
+            <div v-for="(tag, index) in parsedTags" :key="index"
+                 class="has-background-primary has-text-white"
+                 style="border-radius: 4px; padding: 0 5px; margin-right: 6px; margin-bottom: 5px;">
+                {{ tag }}
+            </div>
+        </div>
+        <div class="button-outer">
+            <button class="button is-primary button-submit" @click="submit">
+                <strong>등록하기</strong>
+            </button>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            quill: null,
+            post: {
+                title: '',
+                body: '',
+                tags: null,
+            },
+            tags: '',
+        }
+    },
+    computed: {
+        parsedTags () {
+            if (this.tags.length === 0) return []
+            const tags = this.tags.trim().split(/[\s,]+/)
+            if (tags.length >= 10) {
+                return tags.slice(0, 10)
+            } else {
+                return tags
+            }
+        },
+    },
+    methods: {
+        updateBody () {
+            this.post.body = JSON.stringify(this.quill.getContents())
+        },
+        async submit () {
+            const validation = this.validateBeforeSubmit()
+            if (!validation.status) {
+                this.$buefy.toast.open(validation.message)
+            } else {
+                this.post.tags = this.parsedTags
+                const postResponse = await this.$store.dispatch('posts/createPost', this.post)
+                if (postResponse.status) {
+                    this.$buefy.toast.open('등록되었습니다.')
+                    this.$router.push(`/posts/${postResponse.data.id}`)
+                } else {
+                    this.$buefy.toast.open('등록이 실패하였습니다. 나중에 다시 시도해주세요.')
+                }
+            }
+        },
+        validateBeforeSubmit () {
+            const result = {}
+            result.status = false
+            if (!this.post.title || this.post.title.trim() === '') {
+                result.message = '글 제목을 입력해주세요.'
+                return result
+            } else if (this.quill.getText().trim().length === 0 && (!this.quill.container.firstChild.innerHTML.includes('img') && !this.quill.container.firstChild.innerHTML.includes('video'))) {
+                result.message = '내용을 작성해주세요.'
+                return result
+            }
+            result.status = true
+            return result
+        },
+        focusOnQuill () {
+            this.quill.focus()
+        },
+    },
+    mounted () {
+        const options = {
+            modules: {
+                toolbar: {
+                    container: [
+                        [{ size: [ 'small', false, 'large', 'huge' ] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ color: [] }, { background: [] }],
+                        [{ align: 'center' }, { align: 'right' }, { align: 'justify' }],
+                        ['link', 'image'],
+                    ],
+                    handlers: {
+                        image: this.imageHandler,
+                    },
+                },
+            },
+            theme: 'snow',
+        }
+        const Quill = require('Quill')
+        const container = this.$refs['quillEditor']
+        this.quill = new Quill(container, options)
+        this.quill.on('text-change', this.updateBody)
+    },
+}
+</script>
+
+<style scoped>
+.title-input {
+    margin-bottom: 20px;
+}
+.quill-editor {
+    margin-bottom: 10px;
+}
+.button-outer {
+    padding: 20px 0 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.button-submit {
+    min-width: 120px;
+}
+.title-input {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+}
+</style>
