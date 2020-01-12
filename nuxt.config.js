@@ -58,7 +58,7 @@ export default {
     ** See https://axios.nuxtjs.org/options
     */
     axios: {
-        baseURL: process.env.VS_API,
+        baseURL: process.env.SPACE_API,
     },
     /*
     ** Build configuration
