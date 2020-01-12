@@ -41,7 +41,7 @@ export const getters = {
     environment (state) {
         return state.environment
     },
-    isAuthorized (state) {
+    isAuthenticated (state) {
         return state.accessToken !== null && state.user !== null
     },
     accessToken (state) {
@@ -111,7 +111,7 @@ export const actions = {
             }
         } catch (e) {
             return {
-                data: e,
+                data: e.response.data,
                 status: false,
             }
         }
@@ -120,3 +120,4 @@ export const actions = {
 
 // todo post list에 긴 이미지 처리
 // todo bug fix after uploaded to twitch
+// todo login fail toast message

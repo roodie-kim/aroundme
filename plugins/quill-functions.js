@@ -49,6 +49,9 @@ Vue.mixin({
                 }
             }
         },
+        focusOnQuill () {
+            this.quill.focus()
+        },
     },
     computed: {
         user () {

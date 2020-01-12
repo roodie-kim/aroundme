@@ -55,6 +55,7 @@ export const actions = {
             this.$axios.setToken(rootState.accessToken, 'Bearer')
             const response = await this.$axios.$post('/comments', comment)
             commit('UNSHIFT_COMMENT', response)
+            commit('posts/ADD_COMMENT', null, { root: true })
             return {
                 data: response,
                 status: true,

@@ -3,8 +3,10 @@
         <navigation></navigation>
         <div class="container" style="padding-top: 30px;">
             <div class="flex">
-                <nuxt style="width: calc(100% - 280px); min-width: 300px;" />
-                <right-column style="width: 280px;"></right-column>
+                <nuxt style="min-width: 300px;" :style="{ width: mainWidth }" />
+                <right-column v-if="sidebarVisible"
+                              style="width: 280px; padding-right: 20px;">
+                </right-column>
             </div>
         </div>
     </div>
@@ -17,6 +19,20 @@ export default {
     components: {
         Navigation,
         RightColumn,
+    },
+    computed: {
+        sidebarVisible () {
+            return this.$route.name !== 'auth-register' &&
+                this.$route.name !== 'posts-create' &&
+                this.$route.name !== 'auth-login' &&
+                this.$route.name !== 'auth-password'
+        },
+        mainWidth () {
+            return this.sidebarVisible ? 'calc(100% - 280px)' : '100%'
+        },
+        name () {
+            return this.$route.name
+        },
     },
 }
 </script>

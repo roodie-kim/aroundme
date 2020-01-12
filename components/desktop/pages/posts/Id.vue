@@ -1,15 +1,17 @@
 <template>
     <div class="container" style="margin: 0 15px 10px;">
-        <p @click="backToList">목록으로 돌아가기</p>
+        <div style="">
+            <p @click="backToList">목록으로 돌아가기</p>
+        </div>
         <div class="header"
              style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
             <p class="has-text-black-ter"
                style="font-size: 16px; font-weight: 600">
-                {{ post.title }}기
+                {{ post.title }}
             </p>
             <div class="flex space-between align-items-center has-text-grey"
                  style="margin-top: 2px; font-size: 14px;">
-                <p>{{ user.name }}</p>
+                <p>{{ post.user.name }}</p>
                 <div class="flex flex-end">
                     <p @click="editPost()"
                        style="margin-right: 5px; cursor: pointer;">
@@ -28,6 +30,12 @@
         <div class="ql-editor"
              style="min-height: 300px; padding-bottom: 50px;"
              v-html="postBody">
+        </div>
+        <div style="margin-bottom: 30px;">
+            <span v-for="(tag, index) in post.tags" :key="index"
+                  class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">
+                #{{ tag.name }}
+            </span>
         </div>
         <comments-list></comments-list>
     </div>

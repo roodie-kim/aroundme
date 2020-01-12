@@ -2,7 +2,16 @@
     <div class="container">
         <h4 class="title is-size-4">수정하기</h4>
         <input class="input title-input" placeholder="제목" v-model="editedPost.title"></input>
-        <div ref="quillEditor"></div>
+        <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
+        <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
+        <input class="input title-input" placeholder="제목"
+               v-model="tags" style="margin-bottom: 5px;"></input>
+        <div class="flex" style="flex-wrap: wrap;">
+            <span v-for="(tag, index) in parsedTags" :key="index"
+                  class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">
+                #{{ tag }}
+            </span>
+        </div>
         <div class="button-outer">
             <button class="button is-primary button-submit" @click="submit">
                 <strong>수정하기</strong>
@@ -20,24 +29,46 @@ export default {
                 id: null,
                 title: '',
                 body: '',
-                tags: ['aa', 'bb', 'cc', 'dd'],
+                tags: null,
             },
+            tags: '',
         }
     },
     computed: {
         post () {
             return this.$store.state.posts.post
         },
+        parsedTags () {
+            if (this.tags.length === 0) return []
+            const tags = this.tags.trim().split(/[\s,]+/)
+            if (tags.length >= 10) {
+                return tags.slice(0, 10)
+            } else {
+                return tags
+            }
+        },
     },
     methods: {
         updateBody () {
             this.editedPost.body = JSON.stringify(this.quill.getContents())
+        },
+        changeTagsIntoString () {
+            let string = ''
+            this.post.tags.forEach((item, index) => {
+                if (index === 0) {
+                    string = string + item.name
+                } else {
+                    string = string + ', ' + item.name
+                }
+            })
+            this.tags = string
         },
         async submit () {
             const validation = this.validateBeforeSubmit()
             if (!validation.status) {
                 this.$buefy.toast.open(validation.message)
             } else {
+                this.editedPost.tags = this.parsedTags
                 const postResponse = await this.$store.dispatch('posts/editPost', this.editedPost)
                 if (postResponse.status) {
                     this.$buefy.toast.open('등록되었습니다.')
@@ -87,6 +118,7 @@ export default {
         this.editedPost.title = this.post.title
         this.editedPost.tags = this.post.tags
         this.quill.setContents(JSON.parse(this.post.body))
+        this.changeTagsIntoString()
     },
 }
 </script>
@@ -106,5 +138,8 @@ export default {
 .title-input {
     padding: 12px 15px;
     margin-bottom: 20px;
+}
+.quill-editor {
+    margin-bottom: 10px;
 }
 </style>

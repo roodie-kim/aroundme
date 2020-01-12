@@ -1,12 +1,19 @@
 <template>
-    <div class="container">
-        비밀번호 변경 페이지
+    <div>
+        <component :is="isMobile"></component>
     </div>
 </template>
 
 <script>
+import PasswordDesktop from '../../components/desktop/pages/auth/Password'
+import PasswordMobile from '../../components/mobile/pages/auth/PasswordM'
 export default {
-    name: 'PasswordChange',
+    name: 'PasswordReset',
+    computed: {
+        isMobile () {
+            return this.$device.isMobile ? PasswordMobile : PasswordDesktop
+        },
+    },
 }
 </script>
 

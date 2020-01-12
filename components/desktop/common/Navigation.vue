@@ -13,15 +13,12 @@
 
                 <template slot="end">
                     <b-navbar-item tag="div">
-                        <div class="buttons" v-if="!isAuthorized">
+                        <div class="buttons" v-if="!isAuthenticated">
                             <nuxt-link to="/auth/register" class="button is-primary">
-                                <strong>Sign up</strong>
-                            </nuxt-link>
-                            <nuxt-link to="/auth/login" class="button is-light">
-                                Log in
+                                <strong>가입하기</strong>
                             </nuxt-link>
                         </div>
-                        <div class="buttons" v-if="isAuthorized">
+                        <div class="buttons" v-if="isAuthenticated">
                             <button @click="logout" class="button is-primary">
                                 <strong>Log out</strong>
                             </button>
@@ -36,8 +33,8 @@
 <script>
 export default {
     computed: {
-        isAuthorized () {
-            return this.$store.getters.isAuthorized
+        isAuthenticated () {
+            return this.$store.getters.isAuthenticated
         },
     },
     methods: {

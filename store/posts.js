@@ -10,13 +10,35 @@ export const mutations = {
         state.posts = [ ...state.posts, ...posts ]
     },
     UNSHIFT_POST (state, post) {
-        state.posts.unshift(post)
+        const posts = JSON.parse(JSON.stringify(state.posts))
+        posts.unshift(post)
+        state.posts = posts
     },
     SET_PAGE (state, page) {
         state.page = page
     },
     SET_POST (state, post) {
         state.post = post
+    },
+    EDIT_POST (state, editedPost) {
+        const posts = JSON.parse(JSON.stringify(state.posts))
+        const index = posts.findIndex((post) => {
+            return post.id === editedPost.id
+        })
+        if (index >= 0) {
+            posts[index] = editedPost
+        }
+        state.posts = posts
+    },
+    REMOVE_POST (state, deletedPost) {
+        const posts = JSON.parse(JSON.stringify(state.posts))
+        const index = posts.findIndex((post) => {
+            return post.id === deletedPost.id
+        })
+        if (index >= 0) {
+            posts.splice(index, 1)
+        }
+        state.posts = posts
     },
     SET_IS_NO_MORE (state, status) {
         state.isNoMore = status
@@ -25,15 +47,29 @@ export const mutations = {
         state.posts = []
     },
     SET_LIKES_COUNT (state, like) {
-        const post = state.post
+        const existingPost = state.post
         if (like.is_deleted) {
-            post.likes_count = post.likes_count - 1
-            post.is_liked = false
+            existingPost.likes_count = existingPost.likes_count - 1
+            existingPost.is_liked = false
         } else {
-            post.likes_count = post.likes_count + 1
-            post.is_liked = true
+            existingPost.likes_count = existingPost.likes_count + 1
+            existingPost.is_liked = true
         }
-        state.post = post
+        state.post = existingPost
+    },
+    ADD_COMMENT (state, comment) {
+        const existingpPost = JSON.parse(JSON.stringify(state.post))
+        existingpPost.comments_count++
+        state.post = existingpPost
+
+        const posts = JSON.parse(JSON.stringify(state.posts))
+        const index = posts.findIndex((post) => {
+            return post.id === existingpPost.id
+        })
+        if (index >= 0) {
+            posts[index].comments_count++
+        }
+        state.posts = posts
     },
 }
 
@@ -103,7 +139,7 @@ export const actions = {
         try {
             this.$axios.setToken(rootState.accessToken, 'Bearer')
             const response = await this.$axios.$patch(`/posts/${post.id}`, post)
-            // commit('SET_POST', response)
+            commit('EDIT_POST', response)
             return {
                 data: response,
                 status: true,
@@ -120,7 +156,7 @@ export const actions = {
         try {
             this.$axios.setToken(rootState.accessToken, 'Bearer')
             const response = await this.$axios.$delete(`/posts/${postId}`)
-            // commit('REMOVE_POST', response)
+            commit('REMOVE_POST', response)
             return {
                 data: response,
                 status: true,

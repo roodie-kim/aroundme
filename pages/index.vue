@@ -33,6 +33,19 @@ export default {
         isMobile () {
             return this.$device.isMobile ? IndexMobile : IndexDesktop
         },
+        posts () {
+            return this.$store.state.posts.posts
+        },
+    },
+    async mounted () {
+        if (this.posts.length === 0) {
+            const queryData = {
+                page: 1,
+                per_page: 20,
+                tags: null,
+            }
+            await this.$store.dispatch('posts/fetchPosts', queryData)
+        }
     },
 }
 </script>

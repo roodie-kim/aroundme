@@ -4,13 +4,13 @@
         <input class="input title-input" placeholder="제목" v-model="post.title"></input>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
         <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
-        <input class="input title-input" placeholder="제목" v-model="tags"></input>
+        <input class="input title-input" placeholder="제목"
+               v-model="tags" style="margin-bottom: 5px;"></input>
         <div class="flex" style="flex-wrap: wrap;">
-            <div v-for="(tag, index) in parsedTags" :key="index"
-                 class="has-background-primary has-text-white"
-                 style="border-radius: 4px; padding: 0 5px; margin-right: 6px; margin-bottom: 5px;">
-                {{ tag }}
-            </div>
+            <span v-for="(tag, index) in parsedTags" :key="index"
+                  class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">
+                #{{ tag }}
+            </span>
         </div>
         <div class="button-outer">
             <button class="button is-primary button-submit" @click="submit">
@@ -75,9 +75,6 @@ export default {
             }
             result.status = true
             return result
-        },
-        focusOnQuill () {
-            this.quill.focus()
         },
     },
     mounted () {
