@@ -82,7 +82,7 @@ export default {
         },
     },
     mounted () {
-        const Quill = require('Quill')
+        const Quill = require('quill')
         const tempContainer = document.createElement('div')
         this.quill = new Quill(tempContainer)
     },

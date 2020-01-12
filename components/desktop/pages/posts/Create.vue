@@ -95,7 +95,7 @@ export default {
             },
             theme: 'snow',
         }
-        const Quill = require('Quill')
+        const Quill = require('quill')
         const container = this.$refs['quillEditor']
         this.quill = new Quill(container, options)
         this.quill.on('text-change', this.updateBody)
