@@ -2,7 +2,7 @@ module.exports = {
     apps: [
         {
             name: 'suji',
-            // script: './server/index.js',
+            script: './node_modules/nuxt/bin/nuxt.js',
             // // watch: 파일이 변경되면 서버가 자동으로 재시작
             watch: false,
             exec_mode: 'cluster',
