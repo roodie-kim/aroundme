@@ -1,5 +1,5 @@
 <template>
-    <div style="padding: 10px 5px 5px; border-bottom: 1px solid #DBDBDB;">
+    <div style="padding: 10px; border-bottom: 1px solid #DBDBDB;">
         <div class="flex space-between has-text-grey" style="padding-bottom: 3px;">
             <p style="font-size: 14px;">{{ comment.user.name }}</p>
             <p style="font-size: 14px;">{{ comment.created_at | humanTimestamp }}</p>
@@ -26,25 +26,9 @@
 </template>
 
 <script>
+import CommentItem from '../../../../desktop/pages/posts/comments/commentItem'
 export default {
-    props: {
-        comment: {
-            type: Object,
-            default: null,
-        },
-    },
-    methods: {
-        likeComment () {
-            const data = {
-                post_id: null,
-                comment_id: this.comment.id,
-            }
-            this.$store.dispatch('comments/likeComment', data)
-        },
-        deleteComment () {
-            this.$store.dispatch('comments/deleteComment', this.comment.id)
-        },
-    },
+    extends: CommentItem,
 }
 </script>
 

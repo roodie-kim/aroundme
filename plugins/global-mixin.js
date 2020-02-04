@@ -6,7 +6,7 @@ Vue.mixin({
             const now = new Date()
             const createdAt = new Date(timestamp)
             if (now.getDate() !== createdAt.getDate()) {
-                return createdAt.getFullYear() + '.' + createdAt.getMonth() + '.' + createdAt.getDate()
+                return createdAt.getFullYear() + '.' + (createdAt.getMonth() + 1) + '.' + createdAt.getDate()
             }
             if (now.getHours() - createdAt.getHours() >= 1) {
                 return `${now.getHours() - createdAt.getHours()}시간 전`
@@ -20,6 +20,14 @@ Vue.mixin({
     computed: {
         user () {
             return this.$store.state.user
+        },
+        isAuthenticated () {
+            return this.$store.getters['isAuthenticated']
+        },
+    },
+    methods: {
+        closeSidebar (isOpen) {
+            this.$store.commit('TOGGLE_SIDE_BAR', isOpen)
         },
     },
 })

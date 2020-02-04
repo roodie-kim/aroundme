@@ -3,8 +3,8 @@
         <navigation></navigation>
         <div class="container" style="padding-top: 30px;">
             <div class="flex">
-                <nuxt style="min-width: 300px;" :style="{ width: mainWidth }" />
-                <right-column v-if="sidebarVisible"
+                <nuxt class="main" style="min-width: 300px;" :style="{ width: mainWidth }" />
+                <right-column class="sidebar" v-if="sidebarVisible"
                               style="width: 280px; padding-right: 20px;">
                 </right-column>
             </div>
@@ -38,5 +38,13 @@ export default {
 </script>
 
 <style scoped>
-
+.default-layout {
+    height: 100%;
+}
+.main {
+    /*overflow: scroll;*/
+}
+.sidebar {
+    /*overflow: scroll;*/
+}
 </style>

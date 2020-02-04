@@ -11,7 +11,6 @@ export default {
     name: 'Index',
     async asyncData ({ store, params, query, error }) {
         if (process.server) {
-            console.log('server')
             const queryData = {
                 page: 1,
                 per_page: 20,
@@ -36,15 +35,31 @@ export default {
         posts () {
             return this.$store.state.posts.posts
         },
+        tags () {
+            return this.$route.query.tags == null ? null : [this.$route.query.tags]
+        },
+        queryData () {
+            const data = {
+                page: 1,
+                per_page: 20,
+            }
+            if (this.tags !== null) {
+                data.tags = this.tags
+            }
+            return data
+        },
+    },
+    watch: {
+        async tags () {
+            this.$store.commit('posts/SET_PAGE', 1)
+            this.$store.commit('posts/SET_IS_NO_MORE', false)
+            this.$store.commit('posts/RESET_POSTS')
+            await this.$store.dispatch('posts/fetchPosts', this.queryData)
+        },
     },
     async mounted () {
         if (this.posts.length === 0) {
-            const queryData = {
-                page: 1,
-                per_page: 20,
-                tags: null,
-            }
-            await this.$store.dispatch('posts/fetchPosts', queryData)
+            await this.$store.dispatch('posts/fetchPosts', this.queryData)
         }
     },
 }

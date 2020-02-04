@@ -1,6 +1,6 @@
 <template>
     <div @click="moveToPost(post.id)" class="post-item"
-         style="border: 1px solid #DBDBDB; border-radius: 4px; padding: 10px; margin: 0 20px 15px; cursor: pointer;">
+         style="border-top: 1px solid #DBDBDB; border-radius: 4px; padding: 10px 15px;">
         <div class="header-div">
             <div class="flex align-items-bottom">
                 <p class="has-text-black-ter"
@@ -20,16 +20,16 @@
                 </span>
             </div>
         </div>
-        <div class="body-div" style="width: 100%;">
+        <div class="body-div">
             <div v-if="postBody.image" style="padding-top: 10px;">
                 <img class="post-body-image"
                      :src="postBody.image">
             </div>
             <p class="has-text-black-ter ellipsis"
-               style="font-size: 16px; font-weight: 600; padding-top: 8px; margin-bottom: 3px;">
+               style="font-size: 16px; font-weight: 600; padding-top: 8px;">
                 {{ post.title }}
             </p>
-            <p class="has-text-grey-dark ellipsis-multiple-line"
+            <p class="has-text-black ellipsis-multiple-line"
                style="font-size: 16px;">
                 {{ postBody.text }}
             </p>
@@ -50,39 +50,9 @@
 </template>
 
 <script>
+import IndexItemDesktop from '../../../desktop/pages/index/IndexItem'
 export default {
-    props: {
-        post: {
-            type: Object,
-            default: null,
-        },
-    },
-    computed: {
-        postBody () {
-            try {
-                const text = JSON.parse(this.post.body).ops.reduce((acc, cur) => {
-                    if (cur.hasOwnProperty('insert') && typeof cur.insert === 'string') {
-                        return acc + cur.insert
-                    }
-                    return acc
-                }, '')
-                const image = JSON.parse(this.post.body).ops.find((operation) => {
-                    return operation.hasOwnProperty('insert') && typeof operation.insert === 'object' && operation.insert.hasOwnProperty('image')
-                })
-                return {
-                    text,
-                    image: image ? image.insert.image : null,
-                }
-            } catch (e) {
-                return this.post.body
-            }
-        },
-    },
-    methods: {
-        moveToPost (id) {
-            this.$router.push(`/posts/${id}`)
-        },
-    },
+    extends: IndexItemDesktop,
 }
 </script>
 

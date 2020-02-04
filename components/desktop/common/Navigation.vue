@@ -3,7 +3,7 @@
         <div class="container">
             <b-navbar>
                 <template slot="brand">
-                    <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                    <b-navbar-item tag="router-link" :to="{ path: '/' }" @click.native="resetPosts()">
                         <img
                             src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
                             alt="Lightweight UI components for Vue.js based on Bulma"
@@ -19,9 +19,9 @@
                             </nuxt-link>
                         </div>
                         <div class="buttons" v-if="isAuthenticated">
-                            <button @click="logout" class="button is-primary">
-                                <strong>Log out</strong>
-                            </button>
+                            <nuxt-link to="/myPage" style="font-size: 18px; font-weight: 600;">
+                                {{ user.name }}
+                            </nuxt-link>
                         </div>
                     </b-navbar-item>
                 </template>
@@ -32,14 +32,9 @@
 
 <script>
 export default {
-    computed: {
-        isAuthenticated () {
-            return this.$store.getters.isAuthenticated
-        },
-    },
     methods: {
-        logout () {
-            this.$store.commit('LOG_OUT')
+        resetPosts () {
+            this.$store.commit('posts/RESET_POSTS')
         },
     },
 }

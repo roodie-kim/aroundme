@@ -7,6 +7,7 @@ export const state = () => ({
     accessToken: null,
     user: null,
     previousPage: null,
+    sidebarOpen: false,
 })
 
 export const mutations = {
@@ -34,6 +35,16 @@ export const mutations = {
     SET_PREVIOUS_PAGE (state, page) {
         state.previousPage = page
         console.log(state.previousPage)
+    },
+    TOGGLE_SIDE_BAR (state, status) {
+        if (status === null) {
+            state.sidebarOpen = !state.sidebarOpen
+        } else {
+            state.sidebarOpen = status
+        }
+    },
+    CHANGE_NAME (state, user) {
+        state.user.name = user.name
     },
 }
 
@@ -105,6 +116,37 @@ export const actions = {
             const response = await this.$axios.$post('/user', data)
             commit('SET_ACCESS_TOKEN', response.access_token)
             commit('SET_ACCESS_TOKEN_TO_COOKIE')
+            return {
+                data: response,
+                status: true,
+            }
+        } catch (e) {
+            return {
+                data: e.response.data,
+                status: false,
+            }
+        }
+    },
+    async changeNickname ({ commit, state }, data) {
+        try {
+            this.$axios.setToken(state.accessToken, 'Bearer')
+            const response = await this.$axios.$patch('/user/name', data)
+            commit('CHANGE_NAME', response)
+            return {
+                data: response,
+                status: true,
+            }
+        } catch (e) {
+            return {
+                data: e.response.data,
+                status: false,
+            }
+        }
+    },
+    async changePassword ({ commit, state }, data) {
+        try {
+            this.$axios.setToken(state.accessToken, 'Bearer')
+            const response = await this.$axios.$patch('/user/password', data)
             return {
                 data: response,
                 status: true,

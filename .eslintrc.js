@@ -28,6 +28,7 @@ module.exports = {
         'dot-notation': 0,
         'vue/order-in-components': 0,
         'vue/max-attributes-per-line': 0,
+        'vue/html-quotes': 0,
         'vue/html-indent': ['error', 4],
         'vue/html-closing-bracket-newline': 0,
         'vue/multiline-html-element-content-newline': 0,
@@ -35,5 +36,7 @@ module.exports = {
         'vue/attributes-order': 0,
         'vue/singleline-html-element-content-newline': 0,
         'vue/no-v-html': 0,
+        'vue/require-component-is': 0,
+        'vue/no-unused-components': 0,
     }
 }

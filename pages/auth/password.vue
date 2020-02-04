@@ -8,6 +8,7 @@
 import PasswordDesktop from '../../components/desktop/pages/auth/Password'
 import PasswordMobile from '../../components/mobile/pages/auth/PasswordM'
 export default {
+    middleware: 'guest',
     name: 'PasswordReset',
     computed: {
         isMobile () {

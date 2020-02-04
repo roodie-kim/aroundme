@@ -38,4 +38,7 @@ html {
     box-sizing: border-box;
     margin: 0;
 }
+.default-layout {
+    height: 100%;
+}
 </style>

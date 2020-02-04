@@ -1,28 +1,31 @@
 <template>
     <div class="container" style="margin: 0 15px 10px;">
-        <div style="">
-            <p @click="backToList">목록으로 돌아가기</p>
+        <div @click="backToList" class="flex"
+             style="margin-bottom: 10px; cursor: pointer;">
+            <img src="../../../../assets/images/icons/arrow-left-blue.svg"
+                 style="width: 20px; margin-right: 5px;" alt="back">
+            <p style="font-size: 18px; font-weight: 600;">목록으로 돌아가기</p>
         </div>
         <div class="header"
              style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
             <p class="has-text-black-ter"
-               style="font-size: 16px; font-weight: 600">
+               style="font-size: 16px; font-weight: 600; word-break: break-word;">
                 {{ post.title }}
             </p>
             <div class="flex space-between align-items-center has-text-grey"
                  style="margin-top: 2px; font-size: 14px;">
                 <p>{{ post.user.name }}</p>
                 <div class="flex flex-end">
-                    <p @click="editPost()"
+                    <p v-if="isAuthenticated" @click="editPost()"
                        style="margin-right: 5px; cursor: pointer;">
                         수정
                     </p>
-                    <p style="margin-right: 5px;">|</p>
-                    <p @click="deletePost()"
+                    <p v-if="isAuthenticated" style="margin-right: 5px;">|</p>
+                    <p v-if="isAuthenticated" @click="deletePost()"
                        style="margin-right: 5px; cursor: pointer;">
                         삭제
                     </p>
-                    <p style="margin-right: 5px;">|</p>
+                    <p v-if="isAuthenticated" style="margin-right: 5px;">|</p>
                     <p>{{ post.created_at | humanTimestamp }}</p>
                 </div>
             </div>
@@ -38,6 +41,12 @@
             </span>
         </div>
         <comments-list></comments-list>
+        <div @click="backToList" class="flex"
+             style="margin-top: 10px; cursor: pointer;">
+            <img src="../../../../assets/images/icons/arrow-left-blue.svg"
+                 style="width: 20px; margin-right: 5px;" alt="back">
+            <p style="font-size: 18px; font-weight: 600;">목록으로 돌아가기</p>
+        </div>
     </div>
 </template>
 

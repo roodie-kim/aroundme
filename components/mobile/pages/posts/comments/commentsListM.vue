@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex space-between" style="padding-bottom: 5px; cursor: pointer;">
+        <div class="flex space-between" style="padding: 0 15px 5px;">
             <div @click="likePost()" class="flex align-items-center like-button">
                 <img v-if="!post.is_liked"
                      src="../../../../../assets/images/icons/heart-black.svg" alt="like"
@@ -32,48 +32,14 @@
 </template>
 
 <script>
-import CommentForm from './commentForm'
-import CommentItem from './commentItem'
+import CommentsList from '../../../../desktop/pages/posts/comments/commentsList'
+import CommentForm from './commentFormM'
+import CommentItem from './commentItemM'
 export default {
+    extends: CommentsList,
     components: {
         CommentForm,
         CommentItem,
-    },
-    computed: {
-        post () {
-            return this.$store.state.posts.post
-        },
-        commentsQuery () {
-            return {
-                post_id: this.$store.state.posts.post.id,
-                page: this.$store.state.comments.page,
-                per_page: 20,
-            }
-        },
-        comments () {
-            return this.$store.state.comments.comments
-        },
-        isNoMore () {
-            return this.$store.state.comments.isNoMore
-        },
-    },
-    methods: {
-        async fetchComments () {
-            await this.$store.dispatch('comments/fetchComments', this.commentsQuery)
-        },
-        async likePost () {
-            const data = {
-                post_id: this.post.id,
-                comment_id: null,
-            }
-            await this.$store.dispatch('posts/postLike', data)
-        },
-    },
-    async mounted () {
-        this.$store.commit('comments/RESET_COMMENTS')
-        this.$store.commit('comments/SET_IS_NO_MORE', false)
-        this.$store.commit('comments/SET_PAGE', 1)
-        await this.fetchComments()
     },
 }
 </script>

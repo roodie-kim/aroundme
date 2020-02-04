@@ -8,7 +8,6 @@
 import PostCreateDesktop from '../../../components/desktop/pages/posts/Id'
 import PostCreateMobile from '../../../components/mobile/pages/posts/IdM'
 export default {
-    name: 'PostIndex',
     async asyncData ({ store, params, query, error }) {
         const postId = params.post
         await store.dispatch('posts/fetchPost', { post_id: postId })
@@ -18,12 +17,12 @@ export default {
             return this.$device.isMobile ? PostCreateMobile : PostCreateDesktop
         },
     },
-    beforeRouteEnter (to, from, next) {
-        next((vm) => {
-            console.log(from)
-            vm.$store.commit('SET_PREVIOUS_PAGE', from)
-        })
-    },
+    // beforeRouteEnter (to, from, next) {
+    //     next((vm) => {
+    //         console.log(from)
+    //         vm.$store.commit('SET_PREVIOUS_PAGE', from)
+    //     })
+    // },
 }
 </script>
 

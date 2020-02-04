@@ -1,3 +1,7 @@
+/*nuxt*/
+html, body, #__nuxt, #__layout {
+    height: 100%;
+}
 /* quill editor*/
 .ql-toolbar {
     border-top-left-radius: 4px;
@@ -34,4 +38,20 @@
 }
 .align-items-bottom {
     align-items: flex-end;
+}
+
+/* common */
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ellipsis-multiple-line {
+    width: 100%;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

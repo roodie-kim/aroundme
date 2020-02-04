@@ -47,7 +47,7 @@ export const mutations = {
         state.posts = []
     },
     SET_LIKES_COUNT (state, like) {
-        const existingPost = state.post
+        const existingPost = JSON.parse(JSON.stringify(state.post))
         if (like.is_deleted) {
             existingPost.likes_count = existingPost.likes_count - 1
             existingPost.is_liked = false
@@ -58,16 +58,30 @@ export const mutations = {
         state.post = existingPost
     },
     ADD_COMMENT (state, comment) {
-        const existingpPost = JSON.parse(JSON.stringify(state.post))
-        existingpPost.comments_count++
-        state.post = existingpPost
+        const existingPost = JSON.parse(JSON.stringify(state.post))
+        existingPost.comments_count++
+        state.post = existingPost
 
         const posts = JSON.parse(JSON.stringify(state.posts))
         const index = posts.findIndex((post) => {
-            return post.id === existingpPost.id
+            return post.id === existingPost.id
         })
         if (index >= 0) {
             posts[index].comments_count++
+        }
+        state.posts = posts
+    },
+    DELETE_COMMENT (state, comment) {
+        const existingPost = JSON.parse(JSON.stringify(state.post))
+        existingPost.comments_count--
+        state.post = existingPost
+
+        const posts = JSON.parse(JSON.stringify(state.posts))
+        const index = posts.findIndex((post) => {
+            return post.id === existingPost.id
+        })
+        if (index >= 0) {
+            posts[index].comments_count--
         }
         state.posts = posts
     },

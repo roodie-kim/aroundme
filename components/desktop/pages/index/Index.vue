@@ -5,9 +5,19 @@
         </index-item-desktop>
         <div class="flex flex-center align-items-center"
              style="height: 60px;">
-            <p @click="loadPosts()" v-if="!isNoMore"
-               style="cursor: pointer;">더 보기</p>
-            <p @click="loadPosts()" v-if="isNoMore">글이 없습니다.</p>
+            <div @click="loadPosts()" v-if="!isNoMore"
+                 class="flex align-items-center"
+                 style="cursor: pointer;">
+                <img src="../../../../assets/images/icons/plus-blue.svg"
+                     style="width: 20px; margin-right: 5px;" alt="plus">
+                <p style="font-size: 18px; font-weight: 600;">더 보기</p>
+            </div>
+            <div v-if="isNoMore" class="flex align-items-center"
+                 style="cursor: pointer;">
+                <img src="../../../../assets/images/icons/minus-blue.svg"
+                     style="width: 20px; margin-right: 5px;" alt="minus">
+                <p style="font-size: 18px; font-weight: 600;">글이 없습니다.</p>
+            </div>
         </div>
     </div>
 </template>
@@ -24,6 +34,7 @@ export default {
             return {
                 page: this.$store.state.posts.page,
                 per_page: 20,
+                tags: this.$route.query.tags == null ? null : [this.$route.query.tags],
             }
         },
         isNoMore () {
