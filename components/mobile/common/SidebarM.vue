@@ -2,7 +2,7 @@
     <div class="sidebar"
          :class="{ open: sidebarOpen }">
         <div class="flex flex-center align-items-center"
-             style="margin-top: 150px;"
+             style="height: 150px;"
              v-if="!isAuthenticated">
             <nuxt-link class="button is-primary" to="/auth/register">
                 <strong>가입하기</strong>

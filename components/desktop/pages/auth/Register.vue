@@ -99,30 +99,30 @@ export default {
 </script>
 
 <style scoped>
-    .flex-center {
-        display: flex;
-        justify-content: center;
-    }
-    .card {
-        width: 400px;
-        margin-top: 100px;
-    }
-    .header {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 25px;
-    }
-    .field {
-        height: 65px;
-    }
-    form > button {
-        width: 100%;
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 24px;
-    }
-    .card-content > .string {
-        font-size: 14px;
-        margin-bottom: 14px;
-    }
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+.card {
+    width: 400px;
+    margin-top: 100px;
+}
+.header {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+.field {
+    height: 65px;
+}
+form > button {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+.card-content > .string {
+    font-size: 14px;
+    margin-bottom: 14px;
+}
 </style>

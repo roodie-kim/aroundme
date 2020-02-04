@@ -2,7 +2,7 @@
     <div>
         <div class="container" style="margin-bottom: 10px;">
             <div @click="backToList" class="flex"
-                 style="padding-left: 5px; margin-bottom: 10px; cursor: pointer;">
+                 style="padding-left: 5px; margin-bottom: 10px;">
                 <img src="../../../../assets/images/icons/arrow-left-blue.svg"
                      style="width: 20px; margin-right: 5px;" alt="back">
                 <p style="font-size: 18px; font-weight: 600;">목록으로 돌아가기</p>
@@ -43,7 +43,7 @@
             </div>
             <comments-list></comments-list>
             <div @click="backToList" class="flex"
-                 style="padding-left: 5px; margin-bottom: 10px; cursor: pointer;">
+                 style="padding-left: 5px; margin-bottom: 10px;">
                 <img src="../../../../assets/images/icons/arrow-left-blue.svg"
                      style="width: 20px; margin-right: 5px;" alt="back">
                 <p style="font-size: 18px; font-weight: 600;">목록으로 돌아가기</p>
