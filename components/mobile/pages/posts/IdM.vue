@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container" style="margin-bottom: 10px;">
-            <div @click="backToList" class="flex"
+            <div @click="backToList" class="flex align-items-center"
                  style="padding-left: 5px; margin-bottom: 10px;">
                 <img src="../../../../assets/images/icons/arrow-left-blue.svg"
                      style="width: 20px; margin-right: 5px;" alt="back">
@@ -42,7 +42,7 @@
                 </span>
             </div>
             <comments-list></comments-list>
-            <div @click="backToList" class="flex"
+            <div @click="backToList" class="flex align-items-center"
                  style="padding-left: 5px; margin-bottom: 10px;">
                 <img src="../../../../assets/images/icons/arrow-left-blue.svg"
                      style="width: 20px; margin-right: 5px;" alt="back">

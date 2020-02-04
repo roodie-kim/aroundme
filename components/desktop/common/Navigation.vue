@@ -32,8 +32,14 @@
 
 <script>
 export default {
+    data () {
+        return {
+            route: null,
+        }
+    },
     methods: {
         resetPosts () {
+            // console.log(this.$route.query)
             this.$store.commit('posts/RESET_POSTS')
         },
     },

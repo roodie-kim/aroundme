@@ -9,16 +9,6 @@ import IndexMobile from '../components/mobile/pages/index/IndexM'
 import IndexDesktop from '../components/desktop/pages/index/Index'
 export default {
     name: 'Index',
-    async asyncData ({ store, params, query, error }) {
-        if (process.server) {
-            const queryData = {
-                page: 1,
-                per_page: 20,
-                tags: query.tags ? query.tags : null,
-            }
-            await store.dispatch('posts/fetchPosts', queryData)
-        }
-    },
     data () {
         return {
             mounted: false,
@@ -36,7 +26,7 @@ export default {
             return this.$store.state.posts.posts
         },
         tags () {
-            return this.$route.query.tags == null ? null : [this.$route.query.tags]
+            return this.$route.query.tags == null ? null : this.$route.query.tags
         },
         queryData () {
             const data = {
