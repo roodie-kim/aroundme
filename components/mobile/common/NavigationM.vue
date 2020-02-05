@@ -2,7 +2,7 @@
     <div class="nav">
         <div class="container flex space-between align-items-center align-items-center"
              style="height: 50px;">
-            <img @click="goToMain()"
+            <img @click="goToHome()"
                  src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
                  alt="Lightweight UI components for Vue.js based on Bulma"
                  style="margin-left: 8px; height: 30px;"
@@ -35,9 +35,11 @@ export default {
         toggleSideBar (isOpen) {
             this.$store.commit('TOGGLE_SIDE_BAR', isOpen)
         },
-        goToMain () {
-            this.$store.commit('posts/RESET_POSTS')
-            this.$router.push({ path: '/' })
+        goToHome () {
+            if (!(this.$route.name === 'index' && this.$route.query.tags == null)) {
+                this.$store.commit('posts/RESET_POSTS')
+                this.$router.push('/')
+            }
         },
     },
 }
