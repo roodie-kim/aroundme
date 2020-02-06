@@ -28,7 +28,10 @@ export default {
     computed: {
         isCreatingPage () {
             return this.$route.name === 'posts-create' ||
-                this.$route.name === 'posts-post-edit'
+                this.$route.name === 'posts-post-edit' ||
+                this.$route.name === 'auth-register' ||
+                this.$route.name === 'auth-login' ||
+                this.$route.name === 'auth-password'
         },
     },
     methods: {

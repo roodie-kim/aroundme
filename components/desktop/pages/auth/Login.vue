@@ -75,6 +75,9 @@ export default {
             })
         },
     },
+    mounted () {
+        this.toggleSidebar(false)
+    },
 }
 </script>
 

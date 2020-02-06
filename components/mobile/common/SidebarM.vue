@@ -2,7 +2,7 @@
     <div class="sidebar"
          :class="{ open: sidebarOpen }">
         <div class="flex flex-center align-items-center"
-             style="height: 150px;"
+             style="height: 100px;"
              v-if="!isAuthenticated">
             <nuxt-link class="button is-primary" to="/auth/register">
                 <strong>가입하기</strong>
@@ -10,7 +10,7 @@
         </div>
         <div>
             <div v-if="isAuthenticated" style="padding: 30px 10px 10px;">
-                <nuxt-link to="/myPage" @click.native="closeSidebar(false)"
+                <nuxt-link to="/myPage" @click.native="toggleSidebar(false)"
                            style="font-size: 18px; font-weight: 600;">
                     {{ user.name }}
                 </nuxt-link>
@@ -35,7 +35,7 @@
             </div>
             <div>
                 <div v-for="(tag, index) in tags" :key="index">
-                    <nuxt-link @click.native="closeSidebar(false)"
+                    <nuxt-link @click.native="toggleSidebar(false)"
                                :to="{ name: 'index', query: { tags: tag.name } }"
                                class="has-text-warm-red"
                                style="margin: 1px 0; cursor: pointer; padding: 0 20px;">
@@ -63,10 +63,10 @@ export default {
 .sidebar {
     background-color: rgba(240, 240, 240, 0.95);
     height: calc(100% - 50px);
-    width: 100%;
+    width: 70%;
     position: fixed;
     top: 50px;
-    left: -100%;
+    left: -70%;
     transition: linear 0.2s;
     z-index: 10;
 }

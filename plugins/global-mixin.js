@@ -26,7 +26,7 @@ Vue.mixin({
         },
     },
     methods: {
-        closeSidebar (isOpen) {
+        toggleSidebar (isOpen) {
             this.$store.commit('TOGGLE_SIDE_BAR', isOpen)
         },
     },

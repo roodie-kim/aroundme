@@ -69,7 +69,7 @@ export default {
             const string = this.keyword.replace(/ /g, '')
             this.$router.push(`/?tags=${string}`)
             this.keyword = null
-            this.closeSidebar(false)
+            this.toggleSidebar(false)
         },
     },
     async mounted () {
