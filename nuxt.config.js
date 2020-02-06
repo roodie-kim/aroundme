@@ -109,7 +109,29 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
         'nuxt-device-detect',
+        '@nuxtjs/sitemap',
     ],
+    sitemap: {
+        hostname: 'https://example.com',
+        gzip: true,
+        exclude: [
+            '/auth/**',
+            '/posts/create',
+            '/posts/**/edit',
+        ],
+        routes: [
+            {
+                url: '/',
+                changefreq: 'daily',
+                priority: 1,
+            },
+            {
+                url: '/posts/1',
+                changefreq: 'daily',
+                priority: 1,
+            },
+        ],
+    },
     /*
     ** Axios module configuration
     ** See https://axios.nuxtjs.org/options
