@@ -10,8 +10,65 @@ export default {
         title: process.env.npm_package_name || '',
         meta: [
             { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+            {
+                hid: 'viewport',
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1',
+            },
+            {
+                hid: 'keywords',
+                name: 'keywords',
+                content: '수지, 커뮤니티, 수지구, 용인, 용인시, 동천동, 풍덕천동,',
+            },
+            {
+                hid: 'description',
+                name: 'description',
+                content: '수지 사람들의 생활 정보 공유공간',
+            },
+            {
+                hid: 'image',
+                name: 'image',
+                content: process.env.SEO_IMAGE_PATH,
+            },
+            // {
+            //     name: 'naver-site-verification',
+            //     content: '5d1a2515128b54f7193639c45d382631e3008d3d',
+            // },
+            /* Open Graph */
+            {
+                hid: 'og:title',
+                property: 'og:title',
+                content: '수지사람공간',
+            },
+            {
+                hid: 'og:description',
+                property: 'og:description',
+                content: `수지 사람들의 생활 정보 공유공간`,
+            },
+            {
+                hid: 'og:url',
+                property: 'og:url',
+                content: process.env.OG_URL,
+            },
+            {
+                hid: 'og:type',
+                property: 'og:type',
+                content: 'website',
+            },
+            {
+                hid: 'og:image',
+                property: 'og:image',
+                content: process.env.SEO_IMAGE_PATH,
+            },
+            {
+                hid: 'og:image:type',
+                property: 'og:image:type',
+                content: 'image/png',
+            },
+            // {
+            //     property: 'fb:app_id',
+            //     content: '307583213482718',
+            // },
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
