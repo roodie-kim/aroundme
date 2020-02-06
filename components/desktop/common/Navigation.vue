@@ -3,10 +3,10 @@
         <div class="container">
             <b-navbar>
                 <template slot="brand">
-                    <b-navbar-item tag="div" class="navbar-brand" @click="goHome()" style="cursor: pointer;">
-                        <img
-                            src="../../../assets/images/logos/main-logo.png"
-                            alt="수지"
+                    <b-navbar-item tag="div" class="navbar-brand" style="cursor: pointer;">
+                        <img @click="goHome()"
+                             src="../../../assets/images/logos/main-logo.png"
+                             alt="수지"
                         >
                     </b-navbar-item>
                 </template>
