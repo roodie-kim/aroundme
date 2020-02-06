@@ -4,7 +4,7 @@
         <input class="input title-input" placeholder="제목" v-model="post.title"></input>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
         <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
-        <input class="input title-input" placeholder="제목"
+        <input class="input title-input" placeholder="태그"
                v-model="tags" style="margin-bottom: 5px;"></input>
         <div class="flex" style="flex-wrap: wrap;">
             <span v-for="(tag, index) in parsedTags" :key="index"
