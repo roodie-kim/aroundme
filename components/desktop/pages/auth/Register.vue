@@ -6,24 +6,28 @@
                 <ValidationObserver ref="observer" tag="form" @submit.prevent="submit" novalidate>
                     <ValidationProvider rules="required|email" name="이메일" v-slot="{ errors, valid }">
                         <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }" :message="errors">
-                            <b-input type="email" v-model="userInfo.email" placeholder="이메일"></b-input>
+                            <b-input type="email" v-model="userInfo.email"
+                                     placeholder="이메일" autocomplete="no"></b-input>
                         </b-field>
                     </ValidationProvider>
                     <ValidationProvider rules="required|alphaKor|between:2,12" name="닉네임" v-slot="{ errors, valid }">
                         <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }" :message="errors">
-                            <b-input type="text" v-model="userInfo.name" placeholder="닉네임"></b-input>
+                            <b-input type="text" v-model="userInfo.name"
+                                     placeholder="닉네임" autocomplete="no"></b-input>
                         </b-field>
                     </ValidationProvider>
                     <ValidationProvider rules="required|min:8|confirmed:비밀번호 확인" name="비밀번호" v-slot="{ errors, valid }">
                         <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }"
                                  :message="errors">
-                            <b-input type="password" v-model="userInfo.password" placeholder="비밀번호"></b-input>
+                            <b-input type="password" v-model="userInfo.password"
+                                     placeholder="비밀번호" autocomplete="no"></b-input>
                         </b-field>
                     </ValidationProvider>
                     <ValidationProvider rules="required" name="비밀번호확인" v-slot="{ errors, valid }" vid="비밀번호 확인">
                         <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }"
                                  :message="errors">
-                            <b-input type="password" v-model="userInfo.password_confirm" placeholder="비밀번호 확인"></b-input>
+                            <b-input type="password" v-model="userInfo.password_confirm"
+                                     placeholder="비밀번호 확인" autocomplete="no"></b-input>
                         </b-field>
                     </ValidationProvider>
                     <button type="submit" class="button is-primary">가입하기</button>

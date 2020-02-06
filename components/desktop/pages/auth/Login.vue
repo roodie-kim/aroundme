@@ -6,13 +6,15 @@
                 <ValidationObserver ref="observer" tag="form" @submit.prevent="submit" novalidate>
                     <ValidationProvider rules="required|email" name="이메일" v-slot="{ errors, valid }">
                         <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }" :message="errors">
-                            <b-input type="email" v-model="userInfo.email" placeholder="이메일"></b-input>
+                            <b-input type="email" v-model="userInfo.email"
+                                     placeholder="이메일" autocomplete="email"></b-input>
                         </b-field>
                     </ValidationProvider>
                     <ValidationProvider rules="required" name="비밀번호" v-slot="{ errors, valid }">
                         <b-field :type="{ 'is-danger': errors[0], 'is-success': valid }"
                                  :message="errors">
-                            <b-input type="password" v-model="userInfo.password" placeholder="비밀번호"></b-input>
+                            <b-input type="password" v-model="userInfo.password" placeholder="비밀번호"
+                                     autocomplete="password"></b-input>
                         </b-field>
                     </ValidationProvider>
                     <button type="submit" class="button is-primary">로그인</button>
