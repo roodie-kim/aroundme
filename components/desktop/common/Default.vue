@@ -39,9 +39,10 @@ export default {
         },
         sidebarVisible () {
             return this.$route.name !== 'auth-register' &&
-                this.$route.name !== 'posts-create' &&
                 this.$route.name !== 'auth-login' &&
-                this.$route.name !== 'auth-password'
+                this.$route.name !== 'auth-password' &&
+                this.$route.name !== 'posts-create' &&
+                this.$route.name !== 'posts-post-edit'
         },
         mainWidth () {
             return this.sidebarVisible ? 'calc(100% - 280px)' : '100%'

@@ -17,12 +17,11 @@ export default {
             return this.$device.isMobile ? PostCreateMobile : PostCreateDesktop
         },
     },
-    // beforeRouteEnter (to, from, next) {
-    //     next((vm) => {
-    //         console.log(from)
-    //         vm.$store.commit('SET_PREVIOUS_PAGE', from)
-    //     })
-    // },
+    beforeRouteEnter (to, from, next) {
+        next((vm) => {
+            vm.$store.commit('SET_PREVIOUS_PAGE', from)
+        })
+    },
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
     <div class="container" style="margin: 0 15px 10px;">
+        {{ previousPage }}
         <div @click="backToList" class="flex"
              style="margin-bottom: 10px; cursor: pointer;">
             <img src="../../../../assets/images/icons/arrow-left-blue.svg"
@@ -75,6 +76,9 @@ export default {
                 return this.quill.root.innerHTML
             }
         },
+        previousPage () {
+            return this.$store.state.previousPage
+        },
     },
     methods: {
         editPost () {
@@ -87,7 +91,11 @@ export default {
             }
         },
         backToList () {
-            this.$router.go(-1)
+            if (this.previousPage.name === 'posts-post-edit') {
+                this.$router.go(-3)
+            } else {
+                this.$router.go(-1)
+            }
         },
     },
     mounted () {

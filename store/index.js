@@ -34,7 +34,6 @@ export const mutations = {
     },
     SET_PREVIOUS_PAGE (state, page) {
         state.previousPage = page
-        console.log(state.previousPage)
     },
     TOGGLE_SIDE_BAR (state, status) {
         if (status === null) {
