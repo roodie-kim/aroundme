@@ -3,22 +3,22 @@
         <div class="container">
             <b-navbar>
                 <template slot="brand">
-                    <b-navbar-item tag="div" @click="goHome()" style="cursor: pointer;">
+                    <b-navbar-item tag="div" class="navbar-brand" @click="goHome()" style="cursor: pointer;">
                         <img
-                            src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-                            alt="Lightweight UI components for Vue.js based on Bulma"
+                            src="../../../assets/images/logos/main-logo.png"
+                            alt="수지"
                         >
                     </b-navbar-item>
                 </template>
 
                 <template slot="end">
                     <b-navbar-item tag="div">
-                        <div class="buttons" v-if="!isAuthenticated">
+                        <div class="buttons" v-if="!isAuthenticated" style="cursor: pointer;">
                             <nuxt-link to="/auth/register" class="button is-primary">
                                 <strong>가입하기</strong>
                             </nuxt-link>
                         </div>
-                        <div class="buttons" v-if="isAuthenticated">
+                        <div class="buttons" v-if="isAuthenticated" style="cursor: pointer;">
                             <nuxt-link to="/myPage" style="font-size: 18px; font-weight: 600;">
                                 {{ user.name }}
                             </nuxt-link>
@@ -49,5 +49,7 @@ export default {
 </script>
 
 <style scoped>
-
+/*.navbar-brand {*/
+/*    width: 200px;*/
+/*}*/
 </style>

@@ -3,9 +3,9 @@
         <div class="container flex space-between align-items-center align-items-center"
              style="height: 50px;">
             <img @click="goToHome()"
-                 src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
+                 src="../../../assets/images/logos/main-logo.png"
                  alt="Lightweight UI components for Vue.js based on Bulma"
-                 style="margin-left: 8px; height: 30px;"
+                 style="margin-left: 8px; height: 22px;"
             >
             <div @click="toggleSideBar(null)"
                  class="flex flex-center align-items-center"
