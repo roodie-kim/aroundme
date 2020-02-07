@@ -6,6 +6,11 @@ html, body, #__nuxt, #__layout {
 .ql-toolbar {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #ffffff;
 }
 .ql-container {
     border-bottom-left-radius: 4px;

@@ -68,7 +68,7 @@ export default {
     top: 50px;
     left: -70%;
     transition: linear 0.2s;
-    z-index: 10;
+    z-index: 20;
 }
 .sidebar.open {
     left: 0;
