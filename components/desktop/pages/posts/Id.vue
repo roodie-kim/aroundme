@@ -35,6 +35,11 @@
              v-html="postBody">
         </div>
         <div style="margin-bottom: 30px;">
+            <span v-if="post.town"
+                  class="has-text-primary has-text-weight-bold"
+                  style="font-size: 14px; margin-right: 10px;">
+                @{{ post.town.name }}
+            </span>
             <span v-for="(tag, index) in post.tags" :key="index"
                   class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">
                 #{{ tag.name }}

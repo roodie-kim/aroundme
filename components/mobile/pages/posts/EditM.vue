@@ -2,6 +2,13 @@
     <div class="container" style="padding: 0 10px;">
         <h4 class="title is-size-4">수정하기</h4>
         <input class="input title-input" placeholder="제목" v-model="editedPost.title"></input>
+        <b-taglist>
+            <b-tag @click.native="selectTown(town.id)" :type="isSelected(town.id)" size="is-medium" :rounded="true"
+                   v-for="(town, index) in towns" :key="index"
+                   style="cursor: pointer;">
+                {{ town.name }}
+            </b-tag>
+        </b-taglist>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
         <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
         <input class="input title-input" placeholder="제목"
