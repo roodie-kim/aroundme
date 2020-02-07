@@ -2,6 +2,13 @@
     <div class="container">
         <h4 class="title is-size-4">새글쓰기</h4>
         <input class="input title-input" placeholder="제목" v-model="post.title"></input>
+        <b-taglist>
+            <b-tag @click.native="selectTown(town.id)" :type="isSelected(town.id)" size="is-medium" :rounded="true"
+                   v-for="(town, index) in towns" :key="index"
+                   style="cursor: pointer;">
+                {{ town.name }}
+            </b-tag>
+        </b-taglist>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
         <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
         <input class="input title-input" placeholder="태그"
@@ -29,6 +36,7 @@ export default {
                 title: '',
                 body: '',
                 tags: null,
+                town_id: null,
             },
             tags: '',
         }
@@ -43,8 +51,26 @@ export default {
                 return tags
             }
         },
+        towns () {
+            if (this.$store.state.towns.towns.length === 0) {
+                return []
+            } else {
+                const towns = [ ...this.$store.state.towns.towns ]
+                towns.push({
+                    id: null,
+                    name: '선택안함',
+                })
+                return towns
+            }
+        },
     },
     methods: {
+        selectTown (id) {
+            this.post.town_id = id
+        },
+        isSelected (id) {
+            return this.post.town_id === id ? 'is-primary' : 'is-grey-light'
+        },
         updateBody () {
             this.post.body = JSON.stringify(this.quill.getContents())
         },
@@ -76,8 +102,14 @@ export default {
             result.status = true
             return result
         },
+        async fetchTowns () {
+            if (this.towns.length === 0) {
+                await this.$store.dispatch('towns/fetchTowns')
+            }
+        },
     },
-    mounted () {
+    async mounted () {
+        await this.fetchTowns()
         const options = {
             modules: {
                 toolbar: {
@@ -99,7 +131,6 @@ export default {
         const container = this.$refs['quillEditor']
         this.quill = new Quill(container, options)
         this.quill.on('text-change', this.updateBody)
-        console.log(this.quill.options.modules)
     },
 }
 </script>

@@ -10,6 +10,8 @@ $link-color: #1394F6;
 $link-color-invert: findColorInvert($link-color);
 $warm-red: #FF5722;
 $warm-red-invert: findColorInvert($warm-red);
+$grey-light: #B5B5B5;
+$grey-light-invert: findColorInvert($grey-light);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -24,6 +26,7 @@ $colors: (
     "danger": ($danger, $danger-invert),
     "warm-red": ($warm-red, $warm-red-invert),
     "twitter": ($twitter, $twitter-invert),
+    "grey-light": ($grey-light, $grey-light-invert),
 );
 
 $input-border-color: #cccccc;
