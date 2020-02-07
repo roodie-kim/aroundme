@@ -17,18 +17,18 @@
                      style="margin-top: 2px; font-size: 14px;">
                     <p>{{ post.user.name }}</p>
                     <div class="flex flex-end">
-                        <p v-if="isAuthenticated"
+                        <p v-if="post.is_mine"
                            @click="editPost()"
                            style="margin-right: 5px; cursor: pointer;">
                             수정
                         </p>
-                        <p v-if="isAuthenticated" style="margin-right: 5px;">|</p>
-                        <p v-if="isAuthenticated"
+                        <p v-if="post.is_mine" style="margin-right: 5px;">|</p>
+                        <p v-if="post.is_mine"
                            @click="deletePost()"
                            style="margin-right: 5px; cursor: pointer;">
                             삭제
                         </p>
-                        <p v-if="isAuthenticated" style="margin-right: 5px;">|</p>
+                        <p v-if="post.is_mine" style="margin-right: 5px;">|</p>
                         <p>{{ post.created_at | humanTimestamp }}</p>
                     </div>
                 </div>

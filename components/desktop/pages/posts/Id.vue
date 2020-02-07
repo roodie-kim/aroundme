@@ -16,16 +16,16 @@
                  style="margin-top: 2px; font-size: 14px;">
                 <p>{{ post.user.name }}</p>
                 <div class="flex flex-end">
-                    <p v-if="isAuthenticated" @click="editPost()"
+                    <p v-if="post.is_mine" @click="editPost()"
                        style="margin-right: 5px; cursor: pointer;">
                         수정
                     </p>
-                    <p v-if="isAuthenticated" style="margin-right: 5px;">|</p>
-                    <p v-if="isAuthenticated" @click="deletePost()"
+                    <p v-if="post.is_mine" style="margin-right: 5px;">|</p>
+                    <p v-if="post.is_mine" @click="deletePost()"
                        style="margin-right: 5px; cursor: pointer;">
                         삭제
                     </p>
-                    <p v-if="isAuthenticated" style="margin-right: 5px;">|</p>
+                    <p v-if="post.is_mine" style="margin-right: 5px;">|</p>
                     <p>{{ post.created_at | humanTimestamp }}</p>
                 </div>
             </div>
@@ -97,6 +97,8 @@ export default {
         backToList () {
             if (this.previousPage.name === 'posts-post-edit') {
                 this.$router.go(-3)
+            } else if (this.previousPage.name === 'posts-create') {
+                this.$router.go(-2)
             } else {
                 this.$router.go(-1)
             }
