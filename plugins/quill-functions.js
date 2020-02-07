@@ -3,18 +3,20 @@ import Vue from 'vue'
 Vue.mixin({
     methods: {
         imageHandler () {
+            // console.log('imageHandler')
             const input = document.createElement('input')
             input.setAttribute('type', 'file')
             input.setAttribute('multiple', 'multiple')
             input.setAttribute('accept', 'image/*')
             input.click()
             // input 값이 변경되면 동작하는 event listener 등록
-            input.onchange = (e) => {
+            input.onchange = async (e) => {
                 // 업로드한 이미지들 처리하는 메서드 호출
-                this.uploadImageToServer(e.target.files)
+                await this.uploadImageToServer(e.target.files)
             }
         },
         async uploadImageToServer (images) {
+            // console.log('uploadImageToServer')
             // 업로드한 이미지가 multiple 이므로 배열 처리
             for (const image of images) {
                 // checkImageSize: MAX 8MB
@@ -29,8 +31,6 @@ Vue.mixin({
                         const range = this.quill.getSelection()
                         this.quill.insertEmbed(range.index, 'image', data.original_url)
                     } else {
-                        // console.warn('error handler')
-                        // todo: error handling
                         this.$buefy.toast.open({
                             duration: 5000,
                             message: 'Failed to upload image',

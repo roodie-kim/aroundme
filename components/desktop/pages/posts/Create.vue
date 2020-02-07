@@ -99,6 +99,7 @@ export default {
         const container = this.$refs['quillEditor']
         this.quill = new Quill(container, options)
         this.quill.on('text-change', this.updateBody)
+        console.log(this.quill.options.modules)
     },
 }
 </script>

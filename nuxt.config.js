@@ -7,7 +7,7 @@ export default {
     ** Headers of the page
     */
     head: {
-        title: process.env.npm_package_name || '',
+        title: '수지사람공간',
         meta: [
             { charset: 'utf-8' },
             {
