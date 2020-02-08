@@ -130,6 +130,26 @@ export default {
                 changefreq: 'daily',
                 priority: 1,
             },
+            {
+                url: '/posts/2',
+                changefreq: 'daily',
+                priority: 1,
+            },
+            {
+                url: '/posts/3',
+                changefreq: 'daily',
+                priority: 1,
+            },
+            {
+                url: '/posts/4',
+                changefreq: 'daily',
+                priority: 1,
+            },
+            {
+                url: '/posts/5',
+                changefreq: 'daily',
+                priority: 1,
+            },
         ],
     },
     /*

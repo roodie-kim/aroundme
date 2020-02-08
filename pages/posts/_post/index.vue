@@ -41,6 +41,7 @@ export default {
     },
     beforeRouteEnter (to, from, next) {
         next((vm) => {
+            console.log(from)
             vm.$store.commit('SET_PREVIOUS_PAGE', from)
         })
     },

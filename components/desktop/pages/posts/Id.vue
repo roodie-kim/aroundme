@@ -95,12 +95,14 @@ export default {
             }
         },
         backToList () {
-            if (this.previousPage.name === 'posts-post-edit') {
-                this.$router.go(-3)
+            if (this.previousPage.name === null) {
+                this.$router.push('/')
+            } else if (this.previousPage.name === 'index') {
+                this.$router.go(-1)
+            } else if (this.previousPage.name === 'posts-post-edit') {
+                this.$router.go(-1)
             } else if (this.previousPage.name === 'posts-create') {
                 this.$router.go(-2)
-            } else {
-                this.$router.go(-1)
             }
         },
     },

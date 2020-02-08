@@ -98,7 +98,8 @@ export default {
                 const postResponse = await this.$store.dispatch('posts/editPost', this.editedPost)
                 if (postResponse.status) {
                     this.$buefy.toast.open('등록되었습니다.')
-                    this.$router.push(`/posts/${postResponse.data.id}`)
+                    this.$router.go(-1)
+                    // this.$router.push(`/posts/${postResponse.data.id}`)
                 } else {
                     this.$buefy.toast.open('등록이 실패하였습니다. 나중에 다시 시도해주세요.')
                 }
