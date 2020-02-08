@@ -31,10 +31,10 @@ export default {
                 name: 'image',
                 content: process.env.SEO_IMAGE_PATH,
             },
-            // {
-            //     name: 'naver-site-verification',
-            //     content: '5d1a2515128b54f7193639c45d382631e3008d3d',
-            // },
+            {
+                name: 'naver-site-verification',
+                content: 'f3fdb50476390981b2db423d51cf53258fefca58',
+            },
             /* Open Graph */
             {
                 hid: 'og:title',
