@@ -76,6 +76,7 @@ export const actions = {
                 commit('LOG_OUT')
             }
         }
+        await dispatch('boards/fetchBoards')
     },
     async fetchUser ({ commit, state }) {
         try {

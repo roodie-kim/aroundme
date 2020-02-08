@@ -47,9 +47,9 @@ export default {
                 })
             }
         },
-        async fetchBoards () {
-            await this.$store.dispatch('boards/fetchBoards')
-        },
+        // async fetchBoards () {
+        //
+        // },
         // search () {
         //     const string = this.keyword.replace(/ /g, '')
         //     this.$router.push(`/?tags=${string}`)
@@ -57,9 +57,9 @@ export default {
         //     this.toggleSidebar(false)
         // },
     },
-    async mounted () {
-        await this.fetchBoards()
-    },
+    // async mounted () {
+    //     await this.fetchBoards()
+    // },
 }
 </script>
 

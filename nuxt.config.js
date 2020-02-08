@@ -150,4 +150,5 @@ export default {
         extend (config, ctx) {
         },
     },
+    env: process.env,
 }
