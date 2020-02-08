@@ -112,7 +112,7 @@ export default {
         '@nuxtjs/sitemap',
     ],
     sitemap: {
-        hostname: 'https://example.com',
+        hostname: process.env.OG_URL,
         gzip: true,
         exclude: [
             '/auth/**',
