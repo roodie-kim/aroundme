@@ -18,21 +18,6 @@
                      alt="search">
             </button>
         </div>
-        <div>
-            <div class="flex align-items-center"
-                 style="border: 1px solid #dbdbdb; border-left: 0; border-right: 0; height: 45px;">
-                <p class="has-text-black-ter title is-size-5">트렌딩 해시태그</p>
-            </div>
-            <div>
-                <div v-for="(tag, index) in tags" :key="index">
-                    <nuxt-link :to="{ name: 'index', query: { tags: tag.name } }"
-                               class="has-text-warm-red"
-                               style="margin: 1px 0; cursor: pointer;">
-                        #{{ tag.name }}
-                    </nuxt-link>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -62,18 +47,18 @@ export default {
                 })
             }
         },
-        async fetchTags () {
-            await this.$store.dispatch('tags/fetchTags')
+        async fetchBoards () {
+            await this.$store.dispatch('boards/fetchBoards')
         },
-        search () {
-            const string = this.keyword.replace(/ /g, '')
-            this.$router.push(`/?tags=${string}`)
-            this.keyword = null
-            this.toggleSidebar(false)
-        },
+        // search () {
+        //     const string = this.keyword.replace(/ /g, '')
+        //     this.$router.push(`/?tags=${string}`)
+        //     this.keyword = null
+        //     this.toggleSidebar(false)
+        // },
     },
     async mounted () {
-        await this.fetchTags()
+        await this.fetchBoards()
     },
 }
 </script>

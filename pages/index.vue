@@ -25,31 +25,18 @@ export default {
         posts () {
             return this.$store.state.posts.posts
         },
-        tags () {
-            return this.$route.query.tags == null ? null : this.$route.query.tags
-        },
         queryData () {
             const data = {
                 page: 1,
                 per_page: 20,
-            }
-            if (this.tags !== null) {
-                data.tags = this.tags
+                board_type: null,
             }
             return data
         },
     },
-    watch: {
-        async tags () {
-            this.$store.commit('posts/SET_PAGE', 1)
-            this.$store.commit('posts/SET_IS_NO_MORE', false)
-            this.$store.commit('posts/RESET_POSTS')
-            await this.$store.dispatch('posts/fetchPosts', this.queryData)
-        },
-    },
-    async mounted () {
+    mounted () {
         if (this.posts.length === 0) {
-            await this.$store.dispatch('posts/fetchPosts', this.queryData)
+            // await this.$store.dispatch('posts/fetchPosts', this.queryData)
         }
     },
 }

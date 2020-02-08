@@ -1,10 +1,10 @@
 export const state = () => ({
-    towns: [],
+    boards: [],
 })
 
 export const mutations = {
-    SET_TOWNS (state, towns) {
-        state.towns = towns
+    SET_BOARDS (state, boards) {
+        state.boards = boards
     },
 }
 
@@ -13,10 +13,10 @@ export const getters = {
 }
 
 export const actions = {
-    async fetchTowns ({ commit, state }) {
+    async fetchBoards ({ commit, state }) {
         try {
-            const response = await this.$axios.$get('/towns')
-            commit('SET_TOWNS', response)
+            const response = await this.$axios.$get('/codes?board_type=B101')
+            commit('SET_BOARDS', response)
             return {
                 data: response,
                 status: true,
