@@ -54,7 +54,6 @@ export default {
     },
     methods: {
         async loadPosts () {
-            this.isLoading = true
             await this.$store.dispatch('posts/fetchPosts', this.postsQuery)
         },
     },
