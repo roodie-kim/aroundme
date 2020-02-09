@@ -112,12 +112,7 @@ export default {
         'nuxt-device-detect',
         '@nuxtjs/sitemap',
         '@nuxtjs/google-gtag',
-        '@nuxtjs/robots',
     ],
-    robots: {
-        UserAgent: '*',
-        Disallow: '/myPage',
-    },
     sitemap: {
         hostname: process.env.OG_URL,
         gzip: true,
