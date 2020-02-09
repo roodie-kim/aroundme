@@ -94,6 +94,10 @@ export default {
                         this.alertValidationWarning('이미 사용중인 별명입니다.')
                         this.userInfo.name = ''
                         return
+                    } else if (response.data.response.data.name[0] === 'The name must be at least 2 characters.') {
+                        this.alertValidationWarning('닉네임은 최소 두글자입니다.')
+                        this.userInfo.name = ''
+                        return
                     }
                 }
             }

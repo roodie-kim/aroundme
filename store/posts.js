@@ -3,6 +3,7 @@ export const state = () => ({
     page: 1,
     post: null,
     isNoMore: false,
+    isLoading: true,
 })
 
 export const mutations = {
@@ -85,6 +86,9 @@ export const mutations = {
         }
         state.posts = posts
     },
+    TOGGLE_IS_LOADING (state, status) {
+        state.isLoading = status
+    },
 }
 
 export const getters = {
@@ -94,6 +98,7 @@ export const getters = {
 export const actions = {
     async fetchPosts ({ commit, state, rootState }, query) {
         try {
+            commit('TOGGLE_IS_LOADING', true)
             this.$axios.setToken(rootState.accessToken, 'Bearer')
             const response = await this.$axios.$get('/posts', {
                 params: query,
@@ -103,11 +108,13 @@ export const actions = {
             if (response.length < 20) {
                 commit('SET_IS_NO_MORE', true)
             }
+            commit('TOGGLE_IS_LOADING', false)
             return {
                 data: response,
                 status: true,
             }
         } catch (e) {
+            commit('TOGGLE_IS_LOADING', true)
             console.log(e)
             return {
                 data: e,

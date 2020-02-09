@@ -3,7 +3,7 @@
         <index-item-mobile v-for="(post, index) in posts"
                            :key="index" :post="post">
         </index-item-mobile>
-        <div class="flex flex-center align-items-center"
+        <div v-if="!isLoading" class="flex flex-center align-items-center"
              style="height: 60px;">
             <div @click="loadPosts()" v-if="!isNoMore"
                  class="flex align-items-center">
@@ -17,6 +17,7 @@
                 <p style="font-size: 18px; font-weight: 600;">글이 없습니다.</p>
             </div>
         </div>
+        <spinner v-if="isLoading" :style="{ 'margin-top': spinnerMargin }"></spinner>
     </div>
 </template>
 
