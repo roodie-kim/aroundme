@@ -31,10 +31,10 @@ export default {
                 name: 'image',
                 content: process.env.SEO_IMAGE_PATH,
             },
-            // {
-            //     name: 'naver-site-verification',
-            //     content: 'f3fdb50476390981b2db423d51cf53258fefca58',
-            // },
+            {
+                name: 'naver-site-verification',
+                content: 'f3fdb50476390981b2db423d51cf53258fefca58',
+            },
             /* Open Graph */
             {
                 hid: 'og:title',
@@ -112,7 +112,12 @@ export default {
         'nuxt-device-detect',
         '@nuxtjs/sitemap',
         '@nuxtjs/google-gtag',
+        '@nuxtjs/robots',
     ],
+    robots: {
+        UserAgent: '*',
+        Disallow: '/myPage',
+    },
     sitemap: {
         hostname: process.env.OG_URL,
         gzip: true,

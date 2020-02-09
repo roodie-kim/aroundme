@@ -14,16 +14,6 @@ export default {
             mounted: false,
         }
     },
-    head () {
-        return {
-            meta: [
-                {
-                    name: 'naver-site-verification',
-                    content: 'f3fdb50476390981b2db423d51cf53258fefca58',
-                },
-            ],
-        }
-    },
     components: {
         IndexMobile,
         IndexDesktop,
