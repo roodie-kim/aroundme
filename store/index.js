@@ -82,7 +82,7 @@ export const actions = {
         try {
             this.$axios.setToken(state.accessToken, 'Bearer')
             const response = await this.$axios.$get('/user')
-            commit('SET_USER', response)
+            commit('SET_USER', response.user)
             return {
                 data: response,
                 status: true,

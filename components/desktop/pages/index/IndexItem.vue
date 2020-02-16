@@ -1,49 +1,19 @@
 <template>
-    <div @click="moveToPost(post.id)" class="post-item"
-         style="border: 1px solid #DBDBDB; border-radius: 4px; padding: 10px; margin: 0 20px 15px; cursor: pointer;">
-        <div class="header-div">
-            <div class="flex align-items-bottom">
-                <p class="has-text-black-ter"
-                   style="margin-right: 10px; font-size: 14px;">
-                    {{ post.user.name }}
-                </p>
-                <p class="has-text-grey-light"
-                   style="font-size: 12px;">
-                    {{ post.created_at | humanTimestamp }}
-                </p>
-            </div>
-            <div>
-                <span v-for="(tag, index) in post.tags" :key="index"
-                      class="has-text-warm-red"
-                      style="font-size: 14px; margin-right: 10px;">
-                    #{{ tag.name }}
-                </span>
+    <div class="main-item">
+        <div class="flex flex-end">
+            <div class="main-item-header flex space-between align-items-center"
+                 style="padding-bottom: 8px;">
+                <p @click="moveToBoard()" style="font-size: 18px; font-weight: 600; cursor: pointer;">{{ board.name }}</p>
+                <p @click="moveToBoard()" style="font-size: 14px; cursor: pointer;">더보기</p>
             </div>
         </div>
-        <div class="body-div" style="width: 100%;">
-            <div v-if="postBody.image" style="padding-top: 10px;">
-                <img class="post-body-image"
-                     :src="postBody.image">
-            </div>
-            <p class="has-text-black-ter ellipsis"
-               style="font-size: 16px; font-weight: 600; padding-top: 8px; margin-bottom: 3px;">
-                {{ post.title }}
-            </p>
-            <p class="has-text-grey-dark ellipsis-multiple-line"
-               style="font-size: 16px;">
-                {{ postBody.text }}
-            </p>
-        </div>
-        <div class="footer-div flex" style="padding-top: 10px;">
-            <div class="flex align-items-center">
-                <img src="../../../../assets/images/icons/heart-black.svg" alt="likes"
-                     style="width: 16px;">
-                <span style="margin-left: 5px;">{{ post.likes_count }}</span>
-            </div>
-            <div class="flex align-items-center" style="margin-left: 20px;">
-                <img src="../../../../assets/images/icons/speech-bubble-black.svg" alt="likes"
-                     style="width: 16px;">
-                <span style="margin-left: 5px;">{{ post.comments_count }}</span>
+        <div style="height: 180px; padding-top: 8px;">
+            <div v-for="(post, index) in posts" :key="index">
+                <nuxt-link :to="`/posts/${post.id}`"
+                           class="flex space-between has-text-black-ter">
+                    <p class="main-item-title ellipsis">{{ post.title }}</p>
+                    <p class="main-item-date flex flex-end">{{ realTimestamp(post.created_at) }}</p>
+                </nuxt-link>
             </div>
         </div>
     </div>
@@ -52,40 +22,51 @@
 <script>
 export default {
     props: {
-        post: {
+        board: {
             type: Object,
             default: null,
         },
     },
-    computed: {
-        postBody () {
-            try {
-                const text = JSON.parse(this.post.body).ops.reduce((acc, cur) => {
-                    if (cur.hasOwnProperty('insert') && typeof cur.insert === 'string') {
-                        return acc + cur.insert
-                    }
-                    return acc
-                }, '')
-                const image = JSON.parse(this.post.body).ops.find((operation) => {
-                    return operation.hasOwnProperty('insert') && typeof operation.insert === 'object' && operation.insert.hasOwnProperty('image')
-                })
-                return {
-                    text,
-                    image: image ? image.insert.image : null,
-                }
-            } catch (e) {
-                return this.post.body
-            }
-        },
+    data () {
+        return {
+            posts: [],
+        }
     },
     methods: {
-        moveToPost (id) {
-            this.$router.push(`/posts/${id}`)
+        async fetchPosts () {
+            const query = {
+                page: 1,
+                per_page: 6,
+                board_type: this.board.cd,
+            }
+            const posts = await this.$store.dispatch('posts/fetchPostsForIndex', query)
+            this.posts = posts.data
         },
+        moveToBoard () {
+            this.$router.push(`/${this.board.name}`)
+        },
+    },
+    async mounted () {
+        await this.fetchPosts()
     },
 }
 </script>
 
 <style scoped>
-
+.main-item {
+    width: 50%;
+    min-width: 300px;
+    padding-right: 15px;
+}
+.main-item-header {
+    width: 100%;
+    height: 30px;
+    border-bottom: 2px solid #B5B5B5;
+}
+.main-item-title {
+    padding: 1px 12px 1px 0;
+}
+.main-item-date {
+    min-width: 45px;
+}
 </style>

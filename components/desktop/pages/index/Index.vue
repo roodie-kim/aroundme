@@ -1,10 +1,7 @@
 <template>
-    <div class="main-index">
-        <div v-for="(board, index) in boards" :key="index">
-            <nuxt-link :to="`/${board.name}`">
-                {{ board }}
-            </nuxt-link>
-        </div>
+    <div class="main-index flex">
+        <index-item-desktop v-for="(board, index) in boards" :key="index" :board="board">
+        </index-item-desktop>
     </div>
 </template>
 
@@ -21,5 +18,7 @@ export default {
 </script>
 
 <style scoped>
-
+.main-index {
+    flex-flow: row wrap;
+}
 </style>

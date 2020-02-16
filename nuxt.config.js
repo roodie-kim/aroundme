@@ -1,3 +1,5 @@
+import MomentLocalesPlugin from 'moment-locales-webpack-plugin'
+
 // dot env load
 require('dotenv').config()
 
@@ -99,8 +101,10 @@ export default {
     ** Nuxt.js dev-modules
     */
     buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
         '@nuxtjs/eslint-module',
+        ['@nuxtjs/moment', {
+            locales: ['ko'], defaultLocale: 'ko',
+        }],
     ],
     /*
     ** Nuxt.js modules

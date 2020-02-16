@@ -8,15 +8,30 @@
             </b-icon>
             &nbsp; 글쓰기
         </div>
-        <div style="display: flex; margin-bottom: 20px;">
-            <input v-model="keyword" class="input" placeholder="검색"
-                   style="border-top-right-radius: 0; border-bottom-right-radius: 0;" />
-            <button @click="search()" class="button is-primary"
-                    style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                <img src="../../../assets/images/icons/search-white.svg"
-                     style="width: 25px;"
-                     alt="search">
-            </button>
+        <!--<div style="display: flex; margin-bottom: 20px;">-->
+        <!--    <input v-model="keyword" class="input" placeholder="검색"-->
+        <!--           style="border-top-right-radius: 0; border-bottom-right-radius: 0;" />-->
+        <!--    <button @click="search()" class="button is-primary"-->
+        <!--            style="border-top-left-radius: 0; border-bottom-left-radius: 0;">-->
+        <!--        <img src="../../../assets/images/icons/search-white.svg"-->
+        <!--             style="width: 25px;"-->
+        <!--             alt="search">-->
+        <!--    </button>-->
+        <!--</div>-->
+        <div>
+            <div class="flex align-items-center"
+                 style="border: 1px solid #dbdbdb; border-left: 0; border-right: 0; height: 45px;">
+                <p class="has-text-black-ter title is-size-5">게시판 목록</p>
+            </div>
+            <div>
+                <div v-for="(board, index) in boards" :key="index">
+                    <p @click="movePage(board.name)"
+                       class="has-text-warm-red"
+                       style="margin: 1px 0; cursor: pointer;">
+                        #{{ board.name }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -29,8 +44,8 @@ export default {
         }
     },
     computed: {
-        tags () {
-            return this.$store.state.tags.tags
+        boards () {
+            return this.$store.state.boards.boards
         },
     },
     methods: {
@@ -47,9 +62,10 @@ export default {
                 })
             }
         },
-        // async fetchBoards () {
-        //
-        // },
+        movePage (name) {
+            this.$store.commit('posts/RESET_POSTS')
+            this.$router.push(`/${name}`)
+        },
         // search () {
         //     const string = this.keyword.replace(/ /g, '')
         //     this.$router.push(`/?tags=${string}`)
@@ -57,9 +73,6 @@ export default {
         //     this.toggleSidebar(false)
         // },
     },
-    // async mounted () {
-    //     await this.fetchBoards()
-    // },
 }
 </script>
 

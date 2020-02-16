@@ -29,5 +29,12 @@ Vue.mixin({
         toggleSidebar (isOpen) {
             this.$store.commit('TOGGLE_SIDE_BAR', isOpen)
         },
+        realTimestamp (timestamp) {
+            if (this.$moment(timestamp).isSame(this.$moment(), 'day')) {
+                return this.$moment(timestamp).format('HH:mm')
+            } else {
+                return this.$moment(timestamp).format('MM-DD')
+            }
+        },
     },
 })

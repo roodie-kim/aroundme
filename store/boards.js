@@ -7,8 +7,12 @@ export const mutations = {
     SET_BOARDS (state, boards) {
         state.boards = boards
     },
-    SET_CURRENT_BOARD (state, board) {
-        state.currentBoard = board
+    SET_CURRENT_BOARD (state, boardName) {
+        const boards = [ ...state.boards ]
+        const index = boards.findIndex((board) => {
+            return board.name === boardName
+        })
+        state.currentBoard = boards[index]
     },
 }
 

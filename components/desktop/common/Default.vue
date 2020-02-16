@@ -3,10 +3,10 @@
         <navigation></navigation>
         <div class="container" style="padding-top: 30px;">
             <div class="flex">
-                <nuxt class="main" style="min-width: 300px;" :style="{ width: mainWidth }" />
                 <right-column class="sidebar" v-if="sidebarVisible"
-                              style="width: 280px; padding-right: 20px;">
+                              style="width: 220px; padding-right: 20px;">
                 </right-column>
+                <nuxt class="main" style="min-width: 300px;" :style="{ width: mainWidth }" />
             </div>
         </div>
         <div @click="goToTop()" v-if="!isCreatingPage"

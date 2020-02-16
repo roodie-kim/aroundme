@@ -54,11 +54,7 @@ export default {
             await this.$store.dispatch('posts/fetchPosts', this.postsQuery)
         },
         setCurrentBoard () {
-            const boards = this.$store.state.boards.boards
-            const index = boards.findIndex((board) => {
-                return board.name === this.boardName
-            })
-            this.$store.commit('boards/SET_CURRENT_BOARD', boards[index])
+            this.$store.commit('boards/SET_CURRENT_BOARD', this.boardName)
         },
     },
     async mounted () {

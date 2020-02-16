@@ -9,6 +9,10 @@ import BoardsMobile from '../../components/mobile/pages/boards/IndexM'
 import BoardsDesktop from '../../components/desktop/pages/boards/Index'
 export default {
     name: 'Index',
+    // async asyncData ({ store, params, query, error }) {
+    //     const boardId = params.boards
+    //     await store.dispatch('posts/fetchPosts', { post_id: boardId })
+    // },
     data () {
         return {
             mounted: false,
@@ -29,14 +33,14 @@ export default {
             const data = {
                 page: 1,
                 per_page: 20,
-                board_type: null,
+                board_type: this.$route.params.boards,
             }
             return data
         },
     },
-    mounted () {
+    async mounted () {
         if (this.posts.length === 0) {
-            // await this.$store.dispatch('posts/fetchPosts', this.queryData)
+            await this.$store.dispatch('posts/fetchPosts', this.queryData)
         }
     },
 }

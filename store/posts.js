@@ -115,6 +115,24 @@ export const actions = {
             }
         }
     },
+    async fetchPostsForIndex ({ commit, state, rootState }, query) {
+        try {
+            this.$axios.setToken(rootState.accessToken, 'Bearer')
+            const response = await this.$axios.$get('/posts', {
+                params: query,
+            })
+            return {
+                data: response,
+                status: true,
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                data: e,
+                status: false,
+            }
+        }
+    },
     async createPost ({ commit, rootState }, post) {
         try {
             this.$axios.setToken(rootState.accessToken, 'Bearer')
