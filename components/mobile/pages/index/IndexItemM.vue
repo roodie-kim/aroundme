@@ -28,7 +28,7 @@
         <div class="body-div">
             <div v-if="postBody.image" style="padding-top: 10px;">
                 <img class="post-body-image"
-                     :src="postBody.image">
+                     v-lazy="postBody.image">
             </div>
             <p class="has-text-black-ter ellipsis"
                style="font-size: 16px; font-weight: 600; padding-top: 8px;">

@@ -95,6 +95,7 @@ export default {
         '~/plugins/vee-validate',
         '~/plugins/global-mixin',
         '~/plugins/quill-functions',
+        { src: '~/plugins/vue-lazyload', ssr: false },
     ],
     /*
     ** Nuxt.js dev-modules

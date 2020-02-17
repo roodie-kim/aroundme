@@ -162,3 +162,4 @@ export const actions = {
 // todo post list에 긴 이미지 처리
 // todo bug fix after uploaded to twitch
 // todo login fail toast message
+// todo _post lazy-loading image
