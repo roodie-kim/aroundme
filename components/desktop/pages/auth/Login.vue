@@ -20,7 +20,7 @@
                     <button type="submit" class="button is-primary">로그인</button>
                 </ValidationObserver>
                 <p class="string">아직 등록된 회원이 아니신가요? 이메일로 <span><nuxt-link to="/auth/register">회원가입</nuxt-link></span>하기</p>
-                <p class="string">비밀번호를 잊어버리셨나요? <span><nuxt-link to="/auth/password">비밀번호</nuxt-link></span> 찾기.</p>
+                <!--<p class="string">비밀번호를 잊어버리셨나요? <span><nuxt-link to="/auth/password">비밀번호</nuxt-link></span> 찾기.</p>-->
             </div>
         </div>
     </div>

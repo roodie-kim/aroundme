@@ -2,9 +2,12 @@
     <div class="sidebar" @click="toggleSidebar(false)"
          :class="{ open: sidebarOpen }">
         <div class="sidebar-inner" @click.stop="">
-            <div class="flex flex-center align-items-center"
+            <div class="flex space-around align-items-center"
                  style="height: 100px;"
                  v-if="!isAuthenticated">
+                <nuxt-link class="button is-primary" to="/auth/login">
+                    <strong>로그인</strong>
+                </nuxt-link>
                 <nuxt-link class="button is-primary" to="/auth/register">
                     <strong>가입하기</strong>
                 </nuxt-link>

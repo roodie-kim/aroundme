@@ -19,7 +19,7 @@ export default {
                 hid: 'keywords',
                 name: 'keywords',
                 content: '수지, 커뮤니티, 수지구, 용인, 용인시, 풍덕천동, 죽전동, 동천동, 고기동, 신봉동, 성복동, 주민, ' +
-                    '상현동, 풍덕천1동, 풍덕천2동, 죽전1동, 죽전2동, 상현1동, 상현2동',
+                    '상현동, 풍덕천1동, 풍덕천2동, 죽전1동, 죽전2동, 상현1동, 상현2동, 용인시민, 수지구민',
             },
             {
                 hid: 'description',
@@ -117,7 +117,9 @@ export default {
         hostname: process.env.OG_URL,
         gzip: true,
         exclude: [
-            '/auth/**',
+            '/auth/login',
+            '/auth/password',
+            '/auth/register',
             '/posts/create',
             '/posts/**/edit',
             '/myPage',

@@ -32,6 +32,9 @@ html, body, #__nuxt, #__layout {
 .space-between {
     justify-content: space-between;
 }
+.space-around {
+    justify-content: space-around;
+}
 .flex-end {
     justify-content: flex-end;
 }
