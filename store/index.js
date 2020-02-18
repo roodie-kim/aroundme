@@ -163,3 +163,4 @@ export const actions = {
 // todo bug fix after uploaded to twitch
 // todo login fail toast message
 // todo _post lazy-loading image
+// todo google tag 관리자
