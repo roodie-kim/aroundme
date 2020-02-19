@@ -9,6 +9,7 @@ import LoginDesktop from '../../components/desktop/pages/auth/Login'
 import LoginMobile from '../../components/mobile/pages/auth/LoginM'
 export default {
     name: 'Login',
+    middleware: 'guest',
     computed: {
         isMobile () {
             return this.$device.isMobile ? LoginMobile : LoginDesktop
