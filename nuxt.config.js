@@ -9,7 +9,7 @@ export default {
     ** Headers of the page
     */
     head: {
-        title: '수지사람공간',
+        title: '필굿 | PhilGood',
         meta: [
             { charset: 'utf-8' },
             {
@@ -20,12 +20,12 @@ export default {
             {
                 hid: 'keywords',
                 name: 'keywords',
-                content: '수지, 커뮤니티, 수지구, 용인, 용인시, 동천동, 풍덕천동,',
+                content: '',
             },
             {
                 hid: 'description',
                 name: 'description',
-                content: '수지 사람들의 생활 정보 공유공간',
+                content: '필리핀 정보 사이트. 필리핀 여행,필리핀 사건,사고 등 필리핀에 관한 이야기,필굿',
             },
             {
                 hid: 'image',
@@ -40,12 +40,12 @@ export default {
             {
                 hid: 'og:title',
                 property: 'og:title',
-                content: '수지사람공간',
+                content: '필굿 | PhilGood',
             },
             {
                 hid: 'og:description',
                 property: 'og:description',
-                content: `수지 사람들의 생활 정보 공유공간`,
+                content: `필리핀 정보 사이트. 필리핀 여행,필리핀 사건,사고 등 필리핀에 관한 이야기,필굿`,
             },
             {
                 hid: 'og:url',
