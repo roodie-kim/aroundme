@@ -42,8 +42,8 @@ export const mutations = {
             state.sidebarOpen = status
         }
     },
-    CHANGE_NAME (state, user) {
-        state.user.name = user.name
+    CHANGE_NAME (state, name) {
+        state.user.name = name
     },
 }
 
@@ -131,7 +131,7 @@ export const actions = {
         try {
             this.$axios.setToken(state.accessToken, 'Bearer')
             const response = await this.$axios.$patch('/user/name', data)
-            commit('CHANGE_NAME', response)
+            // commit('CHANGE_NAME', response)
             return {
                 data: response,
                 status: true,

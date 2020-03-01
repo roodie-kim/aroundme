@@ -78,6 +78,7 @@ export default {
                 }
                 const response = await this.$store.dispatch('changeNickname', this.userInfo)
                 if (response.status) {
+                    this.$store.commit('CHANGE_NAME', this.userInfo.name)
                     this.$buefy.toast.open('닉네임이 변경되었습니다.')
                 } else {
                     this.manageErrorResponse(response)
@@ -92,8 +93,8 @@ export default {
             if (isValid) {
                 const response = await this.$store.dispatch('changePassword', this.userInfo)
                 if (response.status) {
-                    this.userInfo.password = null
-                    this.userInfo.password_confirm = null
+                    // this.userInfo.password = null
+                    // this.userInfo.password_confirm = null
                     this.$buefy.toast.open('비밀번호가 변경되었습니다.')
                 } else {
                     this.manageErrorResponse(response)

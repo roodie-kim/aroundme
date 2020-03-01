@@ -14,7 +14,10 @@
                 <template slot="end">
                     <b-navbar-item tag="div">
                         <div class="buttons" v-if="!isAuthenticated" style="cursor: pointer;">
-                            <nuxt-link to="/auth/register" class="button is-primary">
+                            <nuxt-link to="/auth/login" class="button is-primary is-small">
+                                <strong>로그인</strong>
+                            </nuxt-link>
+                            <nuxt-link to="/auth/register" class="button is-primary is-small">
                                 <strong>가입하기</strong>
                             </nuxt-link>
                         </div>

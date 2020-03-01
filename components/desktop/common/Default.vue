@@ -10,12 +10,14 @@
             </div>
         </div>
         <div @click="goToTop()" v-if="!isCreatingPage"
-             class="go-to-top-button flex flex-center align-items-center">
+             class="go-to-top-button flex flex-center align-items-center"
+             style="cursor: pointer">
             <img src="../../../assets/images/icons/arrow-up-white.svg"
                  alt="arrow" style="height: 30px;">
         </div>
         <div @click="goToCreatePostPage()" v-if="!isCreatingPage"
-             class="create-post-button flex flex-center align-items-center">
+             class="create-post-button flex flex-center align-items-center"
+             style="cursor: pointer">
             <img src="../../../assets/images/icons/pen-white.svg" alt="plus">
         </div>
     </div>

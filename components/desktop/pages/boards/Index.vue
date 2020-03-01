@@ -51,7 +51,9 @@ export default {
     },
     methods: {
         async loadPosts () {
-            await this.$store.dispatch('posts/fetchPosts', this.postsQuery)
+            if (this.posts.length === 0 || this.postsQuery.page !== 1) {
+                await this.$store.dispatch('posts/fetchPosts', this.postsQuery)
+            }
         },
         setCurrentBoard () {
             this.$store.commit('boards/SET_CURRENT_BOARD', this.boardName)

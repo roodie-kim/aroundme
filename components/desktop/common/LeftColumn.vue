@@ -63,8 +63,12 @@ export default {
             }
         },
         movePage (name) {
-            this.$store.commit('posts/RESET_POSTS')
-            this.$router.push(`/${name}`)
+            const inPost = this.$route.params.boards === undefined
+            const differentBoard = this.$route.params.boards !== name
+            if (inPost || differentBoard) {
+                this.$store.commit('posts/RESET_POSTS')
+                this.$router.push(`/${name}`)
+            }
         },
         // search () {
         //     const string = this.keyword.replace(/ /g, '')

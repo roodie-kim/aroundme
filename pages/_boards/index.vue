@@ -38,11 +38,11 @@ export default {
             return data
         },
     },
-    async mounted () {
-        if (this.posts.length === 0) {
-            await this.$store.dispatch('posts/fetchPosts', this.queryData)
-        }
-    },
+    // async mounted () {
+    //     if (this.posts.length === 0) {
+    //         await this.$store.dispatch('posts/fetchPosts', this.queryData)
+    //     }
+    // },
 }
 </script>
 

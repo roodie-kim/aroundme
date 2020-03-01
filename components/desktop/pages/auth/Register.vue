@@ -81,22 +81,8 @@ export default {
             })
         },
         manageErrorResponse (response) {
-            if (response.data.response.status === 422) {
-                if ('email' in response.data.response.data) {
-                    if (response.data.response.data.email[0] === 'The email has already been taken.') {
-                        this.alertValidationWarning('이미 사용중인 이메일입니다.')
-                        this.userInfo.email = ''
-                        return
-                    }
-                }
-                if ('name' in response.data.response.data) {
-                    if (response.data.response.data.name[0] === 'The name has already been taken.') {
-                        this.alertValidationWarning('이미 사용중인 별명입니다.')
-                        this.userInfo.name = ''
-                        return
-                    }
-                }
-            }
+            const message = response.data.response.data.message
+            this.alertValidationWarning(message)
         },
     },
     mounted () {
