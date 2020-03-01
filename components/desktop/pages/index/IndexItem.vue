@@ -7,7 +7,13 @@
                 <p @click="moveToBoard()" style="font-size: 14px; cursor: pointer;">더보기</p>
             </div>
         </div>
-        <div style="height: 180px; padding-top: 8px;">
+        <div v-if="posts.length === 0 && !isLoading"
+             class="flex flex-center align-items-center has-background-light"
+             style="height: 160px; padding-top: 8px;">
+            <p>아직 글이 없습니다.</p>
+        </div>
+        <div v-if="posts.length !== 0 && !isLoading"
+             style="height: 180px; padding-top: 8px;">
             <div v-for="(post, index) in posts" :key="index">
                 <nuxt-link :to="`/posts/${post.id}`"
                            class="flex space-between has-text-black-ter">
@@ -16,10 +22,16 @@
                 </nuxt-link>
             </div>
         </div>
+        <div v-if="isLoading"
+             class="flex flex-center align-items-center"
+             style="height: 180px; padding-top: 8px;">
+            <spinner-div></spinner-div>
+        </div>
     </div>
 </template>
 
 <script>
+import SpinnerDiv from '../../../common/spinner'
 export default {
     props: {
         board: {
@@ -27,9 +39,13 @@ export default {
             default: null,
         },
     },
+    components: {
+        SpinnerDiv,
+    },
     data () {
         return {
             posts: [],
+            isLoading: true,
         }
     },
     methods: {
@@ -41,6 +57,7 @@ export default {
             }
             const posts = await this.$store.dispatch('posts/fetchPostsForIndex', query)
             this.posts = posts.data
+            this.isLoading = false
         },
         moveToBoard () {
             this.$router.push(`/${this.board.name}`)

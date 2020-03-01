@@ -54,10 +54,12 @@ export default {
                     }
                 } else {
                     let message
-                    if (response.data.message === 'user does not exist') {
-                        message = '가입되지 않은 이메일입니다.'
-                    } else if (response.data.message === 'wrong password') {
-                        message = '비밀번호가 틀렸습니다.'
+                    if (response.data.message === 'Fail') {
+                        message = '잘못된 이메일입니다.'
+                    } else if (response.data.message === 'Bad credentials') {
+                        message = '잘못된 비밀번호입니다.'
+                    } else {
+                        message = '문제가 발생했습니다. 지속적으로 같은 문제가 발생할 경우 운영자에게 문의해주세요.'
                     }
                     this.$buefy.dialog.alert({
                         title: '엇!',

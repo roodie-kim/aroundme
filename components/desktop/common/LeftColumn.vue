@@ -26,9 +26,9 @@
             <div>
                 <div v-for="(board, index) in boards" :key="index">
                     <p @click="movePage(board.name)"
-                       class="has-text-warm-red"
+                       class="has-text-primary"
                        style="margin: 1px 0; cursor: pointer;">
-                        #{{ board.name }}
+                        {{ board.name }}
                     </p>
                 </div>
             </div>

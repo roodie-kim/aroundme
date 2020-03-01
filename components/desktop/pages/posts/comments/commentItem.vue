@@ -5,17 +5,17 @@
             <p style="font-size: 14px;">{{ comment.created_at | humanTimestamp }}</p>
         </div>
         <p style="padding-bottom: 5px;">{{ comment.body }}</p>
-        <div class="flex space-between">
-            <div @click="likeComment()" class="flex align-items-center like-button"
-                 style="cursor: pointer;">
-                <img v-if="!comment.is_liked"
-                     src="../../../../../assets/images/icons/heart-black.svg" alt="like"
-                     style="width: 16px;">
-                <img v-if="comment.is_liked"
-                     src="../../../../../assets/images/icons/heart-red.svg" alt="like"
-                     style="width: 16px;">
-                <span style="margin-left: 5px;">{{ comment.likes_count }}</span>
-            </div>
+        <div class="flex flex-end">
+            <!--<div @click="likeComment()" class="flex align-items-center like-button"-->
+            <!--     style="cursor: pointer;">-->
+            <!--    <img v-if="!comment.is_liked"-->
+            <!--         src="../../../../../assets/images/icons/heart-black.svg" alt="like"-->
+            <!--         style="width: 16px;">-->
+            <!--    <img v-if="comment.is_liked"-->
+            <!--         src="../../../../../assets/images/icons/heart-red.svg" alt="like"-->
+            <!--         style="width: 16px;">-->
+            <!--    <span style="margin-left: 5px;">{{ comment.likes_count }}</span>-->
+            <!--</div>-->
             <div v-if="comment.is_mine" class="flex flex-end has-text-grey">
                 <!--<p style="font-size: 14px; margin-right: 5px;">수정</p>-->
                 <!--<p style="font-size: 14px; margin-right: 5px;">|</p>-->

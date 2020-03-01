@@ -23,7 +23,7 @@
 
 <script>
 import Navigation from './Navigation'
-import RightColumn from './RightColumn'
+import RightColumn from './LeftColumn'
 export default {
     components: {
         Navigation,
@@ -42,7 +42,8 @@ export default {
                 this.$route.name !== 'auth-login' &&
                 this.$route.name !== 'auth-password' &&
                 this.$route.name !== 'posts-create' &&
-                this.$route.name !== 'posts-post-edit'
+                this.$route.name !== 'posts-post-edit' &&
+                this.$route.name !== 'index'
         },
         mainWidth () {
             return this.sidebarVisible ? 'calc(100% - 280px)' : '100%'

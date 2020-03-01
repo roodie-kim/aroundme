@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import RightColumn from '../../desktop/common/RightColumn'
+import RightColumn from '../../desktop/common/LeftColumn'
 export default {
     extends: RightColumn,
     computed: {
