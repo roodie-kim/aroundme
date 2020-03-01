@@ -1,8 +1,10 @@
 <template>
     <div class="main-index">
-        <index-item-desktop v-for="(post, index) in posts"
-                            :key="index" :post="post">
-        </index-item-desktop>
+        <h4 v-if="currentBoard" class="title is-4 has-text-primary"
+            style="margin: 10px;">{{ currentBoard.name }}</h4>
+        <index-item v-for="(post, index) in posts"
+                    :key="index" :post="post">
+        </index-item>
         <div class="flex flex-center align-items-center"
              style="height: 60px;">
             <div @click="loadPosts()" v-if="!isNoMore"
@@ -23,29 +25,11 @@
 </template>
 
 <script>
-import IndexItemDesktop from './IndexItemM'
+import Index from '../../../desktop/pages/boards/Index'
+import IndexItem from './IndexItemM'
 export default {
-    components: { IndexItemDesktop },
-    computed: {
-        posts () {
-            return this.$store.state.posts.posts
-        },
-        postsQuery () {
-            return {
-                page: this.$store.state.posts.page,
-                per_page: 20,
-                tags: this.$route.query.tags == null ? null : [this.$route.query.tags],
-            }
-        },
-        isNoMore () {
-            return this.$store.state.posts.isNoMore
-        },
-    },
-    methods: {
-        async loadPosts () {
-            await this.$store.dispatch('posts/fetchPosts', this.postsQuery)
-        },
-    },
+    components: { IndexItem },
+    extends: Index,
 }
 </script>
 

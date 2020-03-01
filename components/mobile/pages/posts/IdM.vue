@@ -1,14 +1,14 @@
 <template>
     <div>
-        <div class="container" style="margin-bottom: 10px;">
+        <div class="container" style="margin: 10px;">
             <div @click="backToList" class="flex align-items-center"
-                 style="padding-left: 5px; margin-bottom: 10px;">
+                 style="margin-bottom: 10px;">
                 <img src="../../../../assets/images/icons/arrow-left-blue.svg"
                      style="width: 20px; margin-right: 5px;" alt="back">
                 <p style="font-size: 18px; font-weight: 600;">목록으로 돌아가기</p>
             </div>
             <div class="header"
-                 style="border-bottom: 1px solid lightgrey; padding: 0 15px 12px;">
+                 style="border-bottom: 1px solid lightgrey; padding-bottom: 8px;">
                 <p class="has-text-black-ter"
                    style="font-size: 16px; font-weight: 600">
                     {{ post.title }}
@@ -34,14 +34,8 @@
                 </div>
             </div>
             <div class="ql-editor"
-                 style="min-height: 150px; padding-bottom: 30px;"
+                 style="min-height: 150px; padding: 12px 0 30px"
                  v-html="postBody">
-            </div>
-            <div style="margin-bottom: 30px; padding: 0 15px;">
-                <span v-for="(tag, index) in post.tags" :key="index"
-                      class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">
-                    #{{ tag.name }}
-                </span>
             </div>
             <comments-list></comments-list>
             <div @click="backToList" class="flex align-items-center"

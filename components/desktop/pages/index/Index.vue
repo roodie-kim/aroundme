@@ -1,14 +1,14 @@
 <template>
     <div class="main-index flex">
-        <index-item-desktop v-for="(board, index) in boards" :key="index" :board="board">
-        </index-item-desktop>
+        <index-item v-for="(board, index) in boards" :key="index" :board="board">
+        </index-item>
     </div>
 </template>
 
 <script>
-import IndexItemDesktop from './IndexItem'
+import IndexItem from './IndexItem'
 export default {
-    components: { IndexItemDesktop },
+    components: { IndexItem },
     computed: {
         boards () {
             return this.$store.state.boards.boards

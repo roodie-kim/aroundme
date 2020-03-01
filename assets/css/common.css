@@ -35,6 +35,9 @@ html, body, #__nuxt, #__layout {
 .flex-end {
     justify-content: flex-end;
 }
+.space-around {
+    justify-content: space-around;
+}
 .flex-center {
     justify-content: center;
 }

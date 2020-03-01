@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-bottom: 30px;">
         <div class="flex space-between" style="padding: 0 15px 5px;">
             <div @click="likePost()" class="flex align-items-center like-button">
                 <img v-if="!post.is_liked"

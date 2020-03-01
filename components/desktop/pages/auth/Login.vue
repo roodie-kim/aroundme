@@ -53,19 +53,21 @@ export default {
                         this.$router.push('/')
                     }
                 } else {
-                    let message
-                    if (response.data.message === 'Fail') {
-                        message = '잘못된 이메일입니다.'
-                    } else if (response.data.message === 'Bad credentials') {
-                        message = '잘못된 비밀번호입니다.'
-                    } else {
-                        message = '문제가 발생했습니다. 지속적으로 같은 문제가 발생할 경우 운영자에게 문의해주세요.'
-                    }
-                    this.$buefy.dialog.alert({
-                        title: '엇!',
-                        message,
-                        type: 'is-danger',
-                    })
+                    const message = response.data.message
+                    this.alertValidationWarning(message)
+                    // let message
+                    // if (response.data.message === 'Fail') {
+                    //     message = '잘못된 이메일입니다.'
+                    // } else if (response.data.message === 'Bad credentials') {
+                    //     message = '잘못된 비밀번호입니다.'
+                    // } else {
+                    //     message = '문제가 발생했습니다. 지속적으로 같은 문제가 발생할 경우 운영자에게 문의해주세요.'
+                    // }
+                    // this.$buefy.dialog.alert({
+                    //     title: '엇!',
+                    //     message,
+                    //     type: 'is-danger',
+                    // })
                 }
             } else {
                 const message = '로그인 정보를 확인해주세요.'

@@ -116,6 +116,8 @@ export default {
             })
         },
         manageErrorResponse (response) {
+            const message = response.data.message
+            this.alertValidationWarning(message)
             // if (response.data.response.status === 422) {
             //     if ('email' in response.data.response.data) {
             //         if (response.data.response.data.email[0] === 'The email has already been taken.') {

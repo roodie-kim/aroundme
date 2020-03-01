@@ -1,6 +1,6 @@
 <template>
     <div @click="moveToPost(post.id)" class="post-item"
-         style="border: 1px solid #DBDBDB; border-radius: 4px; padding: 10px; margin: 0 20px 15px; cursor: pointer;">
+         style="border: 1px solid #DBDBDB; border-radius: 4px; padding: 10px; margin: 0 10px 15px; cursor: pointer;">
         <div class="header-div">
             <div class="flex align-items-bottom">
                 <p class="has-text-black-ter"
@@ -50,39 +50,9 @@
 </template>
 
 <script>
+import IndexItem from '../../../desktop/pages/boards/IndexItem'
 export default {
-    props: {
-        post: {
-            type: Object,
-            default: null,
-        },
-    },
-    computed: {
-        postBody () {
-            try {
-                const text = JSON.parse(this.post.body).ops.reduce((acc, cur) => {
-                    if (cur.hasOwnProperty('insert') && typeof cur.insert === 'string') {
-                        return acc + cur.insert
-                    }
-                    return acc
-                }, '')
-                const image = JSON.parse(this.post.body).ops.find((operation) => {
-                    return operation.hasOwnProperty('insert') && typeof operation.insert === 'object' && operation.insert.hasOwnProperty('image')
-                })
-                return {
-                    text,
-                    image: image ? image.insert.image : null,
-                }
-            } catch (e) {
-                return this.post.body
-            }
-        },
-    },
-    methods: {
-        moveToPost (id) {
-            this.$router.push(`/posts/${id}`)
-        },
-    },
+    extends: IndexItem,
 }
 </script>
 
