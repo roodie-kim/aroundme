@@ -14,14 +14,14 @@ export default function ({app: {router}}, inject) {
   }
   inject('gtag', gtag)
   gtag('js', new Date())
-  gtag('config','UA-158057791-1',{
+  gtag('config','UA-159427258-1',{
   "anonymize_ip": true,
   "send_page_view": false
 })
 
   if(!false){
     router.afterEach((to) => {
-      gtag('config', 'UA-158057791-1', {'page_path': to.fullPath})
+      gtag('config', 'UA-159427258-1', {'page_path': to.fullPath})
     })
   }
 
