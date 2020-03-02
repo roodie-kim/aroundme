@@ -111,6 +111,7 @@ export default {
         '@nuxtjs/axios',
         'nuxt-device-detect',
         '@nuxtjs/sitemap',
+        '@nuxtjs/google-gtag',
     ],
     sitemap: {
         hostname: 'https://example.com',

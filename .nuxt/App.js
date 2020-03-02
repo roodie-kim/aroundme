@@ -7,7 +7,6 @@ import {
 } from './utils'
 
 import NuxtLoading from './components/nuxt-loading.vue'
-import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '../assets/css/custom-bulma.scss'
 
@@ -20,7 +19,7 @@ import _6f6c098b from '../layouts/default.vue'
 const layouts = { "_default": _6f6c098b }
 
 export default {
-  head: {"title":"필굿 | PhilGood","meta":[{"charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"keywords","name":"keywords","content":""},{"hid":"description","name":"description","content":"필리핀 정보 사이트. 필리핀 여행,필리핀 사건,사고 등 필리핀에 관한 이야기,필굿"},{"hid":"image","name":"image","content":"https:\u002F\u002Faround-me-public.s3.ap-northeast-2.amazonaws.com\u002Fpublic\u002Fsuji-sarams-space-seo.png"},{"hid":"og:title","property":"og:title","content":"필굿 | PhilGood"},{"hid":"og:description","property":"og:description","content":"필리핀 정보 사이트. 필리핀 여행,필리핀 사건,사고 등 필리핀에 관한 이야기,필굿"},{"hid":"og:url","property":"og:url","content":"http:\u002F\u002Flocalhost:3000"},{"hid":"og:type","property":"og:type","content":"website"},{"hid":"og:image","property":"og:image","content":"https:\u002F\u002Faround-me-public.s3.ap-northeast-2.amazonaws.com\u002Fpublic\u002Fsuji-sarams-space-seo.png"},{"hid":"og:image:type","property":"og:image:type","content":"image\u002Fpng"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+  head: {"title":"필굿 | PhilGood","meta":[{"charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"keywords","name":"keywords","content":""},{"hid":"description","name":"description","content":"필리핀 정보 사이트. 필리핀 여행,필리핀 사건,사고 등 필리핀에 관한 이야기,필굿"},{"hid":"image","name":"image","content":"https:\u002F\u002Faround-me-public.s3.ap-northeast-2.amazonaws.com\u002Fpublic\u002Fsuji-sarams-space-seo.png"},{"hid":"og:title","property":"og:title","content":"필굿 | PhilGood"},{"hid":"og:description","property":"og:description","content":"필리핀 정보 사이트. 필리핀 여행,필리핀 사건,사고 등 필리핀에 관한 이야기,필굿"},{"hid":"og:url","property":"og:url","content":"http:\u002F\u002Flocalhost:3000"},{"hid":"og:type","property":"og:type","content":"website"},{"hid":"og:image","property":"og:image","content":"https:\u002F\u002Faround-me-public.s3.ap-northeast-2.amazonaws.com\u002Fpublic\u002Fsuji-sarams-space-seo.png"},{"hid":"og:image:type","property":"og:image:type","content":"image\u002Fpng"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=UA-158057791-1","async":true}]},
 
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
@@ -54,7 +53,7 @@ export default {
       }
     }, [
       loadingEl,
-      h(NuxtBuildIndicator),
+
       transitionEl
     ])
   },
@@ -164,10 +163,6 @@ export default {
     },
 
     setLayout (layout) {
-      if(layout && typeof layout !== 'string') {
-        throw new Error('[nuxt] Avoid using non-string value as layout property.')
-      }
-
       if (!layout || !layouts['_' + layout]) {
         layout = 'default'
       }

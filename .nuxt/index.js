@@ -12,6 +12,7 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
+import nuxt_plugin_googlegtag_ade41ea6 from 'nuxt_plugin_googlegtag_ade41ea6' // Source: ./google-gtag.js (mode: 'client')
 import nuxt_plugin_nuxtdevicedetectplugin85a26a2a_6c022856 from 'nuxt_plugin_nuxtdevicedetectplugin85a26a2a_6c022856' // Source: ./nuxt-device-detect.plugin.85a26a2a.js (mode: 'all')
 import nuxt_plugin_axios_1e1b187e from 'nuxt_plugin_axios_1e1b187e' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_moment_9818ee4c from 'nuxt_plugin_moment_9818ee4c' // Source: ./moment.js (mode: 'all')
@@ -174,6 +175,10 @@ async function createApp (ssrContext) {
   }
 
   // Plugin execution
+
+  if (process.client && typeof nuxt_plugin_googlegtag_ade41ea6 === 'function') {
+    await nuxt_plugin_googlegtag_ade41ea6(app.context, inject)
+  }
 
   if (typeof nuxt_plugin_nuxtdevicedetectplugin85a26a2a_6c022856 === 'function') {
     await nuxt_plugin_nuxtdevicedetectplugin85a26a2a_6c022856(app.context, inject)
