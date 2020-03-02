@@ -1,5 +1,3 @@
-import MomentLocalesPlugin from 'moment-locales-webpack-plugin'
-
 // dot env load
 require('dotenv').config()
 
@@ -110,7 +108,6 @@ export default {
     ** Nuxt.js modules
     */
     modules: [
-    // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
         'nuxt-device-detect',
         '@nuxtjs/sitemap',
@@ -155,4 +152,19 @@ export default {
         },
     },
     env: process.env,
+    'google-gtag': {
+        id: process.env.GOOGLE_ANALYTICS_ID,
+        config: {
+            anonymize_ip: true,
+            send_page_view: false,
+        },
+        debug: true, // enable to track in dev mode
+        disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...).
+        additionalAccounts: [{
+            // id: 'UA-158057791-1', // required if you are adding additional accounts
+            // config: {
+            //     send_page_view: false,
+            // },
+        }],
+    },
 }
