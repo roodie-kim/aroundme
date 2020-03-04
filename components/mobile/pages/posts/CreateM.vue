@@ -1,17 +1,17 @@
 <template>
     <div class="container" style="padding: 0 10px;">
         <h4 class="title is-size-4">새글쓰기</h4>
+        <b-select v-model="post.board_type" class="category-select"
+                  placeholder="카테고리를 선택하세요" expanded>
+            <option
+                v-for="board in boards"
+                :value="board.cd"
+                :key="board.name">
+                {{ board.name }}
+            </option>
+        </b-select>
         <input class="input title-input" placeholder="제목" v-model="post.title"></input>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
-        <p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>
-        <input class="input title-input" placeholder="태그"
-               v-model="tags" style="margin-bottom: 5px;"></input>
-        <div class="flex" style="flex-wrap: wrap;">
-            <span v-for="(tag, index) in parsedTags" :key="index"
-                  class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">
-                #{{ tag }}
-            </span>
-        </div>
         <div class="button-outer">
             <button class="button is-primary button-submit" @click="submit">
                 <strong>등록하기</strong>
@@ -28,7 +28,10 @@ export default {
 </script>
 
 <style scoped>
-.title-input {
+.category-select {
+    width: 200px;
+}
+.title-input, .category-select {
     margin-bottom: 20px;
 }
 .quill-editor {

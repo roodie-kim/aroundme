@@ -6,7 +6,7 @@
                     <b-navbar-item tag="div" class="navbar-brand" style="cursor: pointer;">
                         <img @click="goHome()"
                              src="../../../assets/images/logos/main-logo.png"
-                             alt="수지"
+                             alt="로고"
                         >
                     </b-navbar-item>
                 </template>

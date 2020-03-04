@@ -65,6 +65,7 @@ export default {
         movePage (name) {
             const inPost = this.$route.params.boards === undefined
             const differentBoard = this.$route.params.boards !== name
+            this.$store.commit('TOGGLE_SIDE_BAR', false)
             if (inPost || differentBoard) {
                 this.$store.commit('posts/RESET_POSTS')
                 this.$router.push(`/${name}`)

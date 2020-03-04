@@ -62,6 +62,10 @@ export default {
         validateBeforeSubmit () {
             const result = {}
             result.status = false
+            if (this.post.board_type === null) {
+                result.message = '게시판을 선택해 주세요.'
+                return result
+            }
             if (!this.post.title || this.post.title.trim() === '') {
                 result.message = '글 제목을 입력해주세요.'
                 return result
