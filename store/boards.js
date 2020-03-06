@@ -46,7 +46,6 @@ export const actions = {
     async fetchSummary ({ commit, state }) {
         try {
             const response = await this.$axios.$get('/posts/summary')
-            console.log(response)
             commit('SET_SUMMARY', response)
             return {
                 data: response,

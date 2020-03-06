@@ -10,12 +10,12 @@
                     <p @click="moveToBoard()" style="font-size: 14px; cursor: pointer;">더보기</p>
                 </div>
             </div>
-            <div v-if="board.posts.length === 0 && !isLoading"
+            <div v-if="board.posts.length === 0"
                  class="flex flex-center align-items-center has-background-light"
                  style="height: 160px; padding-top: 8px;">
                 <p>아직 글이 없습니다.</p>
             </div>
-            <div v-if="board.posts.length !== 0 && !isLoading"
+            <div v-if="board.posts.length !== 0"
                  style="height: 180px; padding: 10px 10px 5px; background-color: #ffffff;">
                 <div v-for="(post, index) in board.posts" :key="index">
                     <nuxt-link :to="`/posts/${post.id}`"
@@ -25,11 +25,11 @@
                     </nuxt-link>
                 </div>
             </div>
-            <div v-if="isLoading"
-                 class="flex flex-center align-items-center"
-                 style="height: 160px; padding-top: 8px;">
-                <spinner-div></spinner-div>
-            </div>
+            <!--<div v-if="isLoading"-->
+            <!--     class="flex flex-center align-items-center"-->
+            <!--     style="height: 160px; padding-top: 8px;">-->
+            <!--    <spinner-div></spinner-div>-->
+            <!--</div>-->
         </div>
     </div>
 </template>
@@ -48,8 +48,7 @@ export default {
 }
 .main-item-header {
     width: 100%;
-    height: 40px;
-    border-bottom: 2px solid #B5B5B5;
+    height: 35px;
 }
 .main-item-title {
     padding: 1px 12px 1px 0;

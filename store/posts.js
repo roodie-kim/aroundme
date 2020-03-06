@@ -137,7 +137,9 @@ export const actions = {
         try {
             this.$axios.setToken(rootState.accessToken, 'Bearer')
             const response = await this.$axios.$post('/posts', post)
-            commit('UNSHIFT_POST', response)
+            if (rootState.boards.currentBoard && response.board_type === rootState.boards.currentBoard.board_type) {
+                commit('UNSHIFT_POST', response)
+            }
             return {
                 data: response,
                 status: true,

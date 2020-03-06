@@ -104,6 +104,12 @@ export default {
             locales: ['ko'], defaultLocale: 'ko',
         }],
     ],
+    // moment: {
+    //     timezone: {
+    //         startYear: 2019,
+    //         endYear: 2030,
+    //     },
+    // },
     /*
     ** Nuxt.js modules
     */
