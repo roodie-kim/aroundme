@@ -1,5 +1,6 @@
 <template>
-    <div class="nav">
+    <div class="nav"
+         style="background-color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
         <div class="container flex space-between align-items-center align-items-center"
              style="height: 50px;">
             <img @click="goToHome()"

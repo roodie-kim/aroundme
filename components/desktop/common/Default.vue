@@ -1,7 +1,7 @@
 <template>
     <div class="default-layout">
         <navigation></navigation>
-        <div class="container" style="padding-top: 30px;">
+        <div class="container" style="padding-top: 50px;">
             <div class="flex">
                 <right-column class="sidebar" v-if="sidebarVisible"
                               style="width: 220px; padding-right: 20px;">

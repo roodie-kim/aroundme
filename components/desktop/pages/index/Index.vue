@@ -11,8 +11,16 @@ export default {
     components: { IndexItem },
     computed: {
         boards () {
-            return this.$store.state.boards.boards
+            return this.$store.state.boards.summary
         },
+    },
+    methods: {
+        async fetchSummary () {
+            await this.$store.dispatch('boards/fetchSummary')
+        },
+    },
+    mounted () {
+        this.fetchSummary()
     },
 }
 </script>

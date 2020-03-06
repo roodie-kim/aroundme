@@ -33,7 +33,7 @@ Vue.mixin({
                     } else {
                         this.$buefy.toast.open({
                             duration: 5000,
-                            message: 'Failed to upload image',
+                            message: '이미지 업로드에 실패했습니다.',
                             position: 'is-top',
                             type: 'is-danger',
                         })
@@ -42,7 +42,7 @@ Vue.mixin({
                     // 용량큰 이미지는 업로드 하지 않음
                     this.$buefy.toast.open({
                         duration: 5000,
-                        message: 'The uploaded image is too large. The maximum image file size allowed is set to 8MB.',
+                        message: '이미지 용량이 8메가를 초과했습니다.',
                         position: 'is-top',
                         type: 'is-danger',
                     })

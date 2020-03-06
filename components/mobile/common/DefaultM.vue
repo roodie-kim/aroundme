@@ -2,7 +2,7 @@
     <div class="layout">
         <navigation></navigation>
         <sidebar-m></sidebar-m>
-        <nuxt style="margin-bottom: 50px;" />
+        <nuxt style="padding-top: 20px; margin-bottom: 50px;" />
         <div @click="goToTop()" v-if="!isCreatingPage"
              class="go-to-top-button flex flex-center align-items-center">
             <img src="../../../assets/images/icons/arrow-up-white.svg"
