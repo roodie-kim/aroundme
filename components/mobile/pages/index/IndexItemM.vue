@@ -16,7 +16,7 @@
                 <p>아직 글이 없습니다.</p>
             </div>
             <div v-if="board.posts.length !== 0"
-                 style="height: 180px; padding: 10px 10px 5px; background-color: #ffffff;">
+                 style="height: 200px; padding: 10px 10px 5px; background-color: #ffffff;">
                 <div v-for="(post, index) in board.posts" :key="index">
                     <nuxt-link :to="`/posts/${post.id}`"
                                class="flex space-between has-text-black-ter">
