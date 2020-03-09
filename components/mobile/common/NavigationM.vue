@@ -4,9 +4,9 @@
         <div class="container flex space-between align-items-center align-items-center"
              style="height: 50px;">
             <img @click="goToHome()"
-                 src="../../../assets/images/logos/main-logo.png"
-                 alt="Lightweight UI components for Vue.js based on Bulma"
-                 style="margin-left: 8px; height: 22px;"
+                 src="https://philgdpublic.s3.ap-northeast-2.amazonaws.com/seo/Philgood_Logo_Horizontal.png"
+                 alt="logo"
+                 style="margin-left: 8px; height: 30px;"
             >
             <div @click="toggleSideBar(null)"
                  class="flex flex-center align-items-center"

@@ -6,7 +6,7 @@
                 <template slot="brand">
                     <b-navbar-item tag="div" class="navbar-brand" style="cursor: pointer;">
                         <img @click="goHome()"
-                             src="../../../assets/images/logos/main-logo.png"
+                             src="https://philgdpublic.s3.ap-northeast-2.amazonaws.com/seo/Philgood_Logo_Horizontal.png"
                              alt="로고"
                         >
                     </b-navbar-item>
