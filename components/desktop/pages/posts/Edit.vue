@@ -1,17 +1,38 @@
 <template>
     <div class="container">
+        {{ editedPost }}
         <h4 class="title is-size-4">수정하기</h4>
+        <b-select v-model="editedPost.board_type" class="category-select"
+                  placeholder="카테고리를 선택하세요" expanded>
+            <option
+                v-for="board in boards"
+                :value="board.cd"
+                :key="board.name">
+                {{ board.name }}
+            </option>
+        </b-select>
+        <div class="flex" v-if="editedPost.board_type === 'B102'">
+            <b-select v-model="editedPost.area" class="category-select" style="margin-right: 20px;"
+                      placeholder="지역을 선택하세요" expanded>
+                <option
+                    v-for="area in areas"
+                    :value="area.cd"
+                    :key="area.name">
+                    {{ area.name }}
+                </option>
+            </b-select>
+            <b-select v-model="editedPost.sub_type" class="category-select"
+                      placeholder="구매/판매" expanded>
+                <option
+                    v-for="type in subTypes"
+                    :value="type.cd"
+                    :key="type.name">
+                    {{ type.name }}
+                </option>
+            </b-select>
+        </div>
         <input class="input title-input" placeholder="제목" v-model="editedPost.title"></input>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
-        <!--<p class="has-text-grey-light" style="font-size: 14px;">태그는 스페이스 혹 콤마로 구분되며 최대 10개까지 사용할 수 있습니다.</p>-->
-        <!--<input class="input title-input" placeholder="제목"-->
-        <!--       v-model="tags" style="margin-bottom: 5px;"></input>-->
-        <!--<div class="flex" style="flex-wrap: wrap;">-->
-        <!--    <span v-for="(tag, index) in parsedTags" :key="index"-->
-        <!--          class="has-text-warm-red" style="font-size: 14px; margin-right: 10px;">-->
-        <!--        #{{ tag }}-->
-        <!--    </span>-->
-        <!--</div>-->
         <div class="button-outer">
             <button class="button is-primary button-submit" @click="submit">
                 <strong>수정하기</strong>
@@ -28,40 +49,47 @@ export default {
             editedPost: {
                 id: null,
                 title: '',
+                board_type: '',
                 body: '',
                 tags: null,
+                area: null,
+                sub_type: null,
             },
-            tags: '',
         }
     },
     computed: {
+        boards () {
+            const boards = [ ...this.$store.state.boards.boards ]
+            // const index = boards.findIndex((board) => {
+            //     return board.board_type === 'B101'
+            // })
+            // boards.splice(index, 1)
+            return boards
+        },
         post () {
             return this.$store.state.posts.post
         },
-        parsedTags () {
-            if (this.tags.length === 0) return []
-            const tags = this.tags.trim().split(/[\s,]+/)
-            if (tags.length >= 10) {
-                return tags.slice(0, 10)
-            } else {
-                return tags
-            }
+        areas () {
+            return this.$store.state.posts.areas
+        },
+        subTypes () {
+            return this.$store.state.posts.subTypes
+        },
+    },
+    watch: {
+        editedPost: {
+            deep: true,
+            handler (value) {
+                if (value.board_type !== 'B102') {
+                    this.editedPost.area = null
+                    this.editedPost.sub_type = null
+                }
+            },
         },
     },
     methods: {
         updateBody () {
             this.editedPost.body = JSON.stringify(this.quill.getContents())
-        },
-        changeTagsIntoString () {
-            let string = ''
-            this.post.tags.forEach((item, index) => {
-                if (index === 0) {
-                    string = string + item.name
-                } else {
-                    string = string + ', ' + item.name
-                }
-            })
-            this.tags = string
         },
         async submit () {
             const validation = this.validateBeforeSubmit()
@@ -114,16 +142,24 @@ export default {
         const container = this.$refs['quillEditor']
         this.quill = new Quill(container, options)
         this.quill.on('text-change', this.updateBody)
-        this.editedPost.id = this.post.id
-        this.editedPost.title = this.post.title
-        this.editedPost.tags = this.post.tags
+        const post = JSON.parse(JSON.stringify(this.post))
+        this.editedPost.id = post.id
+        this.editedPost.board_type = post.board_type
+        this.editedPost.title = post.title
+        this.editedPost.area = post.area
+        this.editedPost.sub_type = post.sub_type
         this.quill.setContents(JSON.parse(this.post.body))
-        this.changeTagsIntoString()
     },
 }
 </script>
 
 <style scoped>
+.category-select {
+    width: 200px;
+}
+.category-select, .title-input {
+    margin-bottom: 20px;
+}
 .title-input {
     margin-bottom: 20px;
 }

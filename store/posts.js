@@ -3,6 +3,16 @@ export const state = () => ({
     page: 1,
     post: null,
     isNoMore: false,
+    areas: [
+        { cd: 'B201', name: '마닐라', order: 1 },
+        { cd: 'B202', name: '세부', order: 2 },
+        { cd: 'B203', name: '앙할레스', order: 3 },
+        { cd: 'B204', name: '퀘존', order: 4 },
+        { cd: 'B299', name: '기타', order: 99 }],
+    subTypes: [
+        { cd: 'B301', name: '판매', order: 1 },
+        { cd: 'B302', name: '구매', order: 2 },
+    ],
 })
 
 export const mutations = {

@@ -20,7 +20,11 @@
                 <div v-for="(post, index) in board.posts" :key="index">
                     <nuxt-link :to="`/posts/${post.id}`"
                                class="flex space-between has-text-black-ter">
-                        <p class="main-item-title ellipsis">{{ post.title }}</p>
+                        <p class="flex main-item-title ellipsis">
+                            <span v-if="post.area_name" class="has-text-primary">[{{ post.area_name }}]</span>
+                            <span v-if="post.sub_type_name" :class="subTypeNameClass(post)">[{{ post.sub_type_name }}]</span>
+                            {{ post.title }}
+                        </p>
                         <p class="main-item-date flex flex-end">{{ realTimestamp(post.created_at) }}</p>
                     </nuxt-link>
                 </div>
@@ -55,6 +59,9 @@ export default {
                 this.$store.commit('posts/RESET_POSTS')
                 this.$router.push(`/${this.board.name}`)
             }
+        },
+        subTypeNameClass (post) {
+            return post.sub_type_name === '판매' ? 'has-text-primary' : 'has-text-warm-red'
         },
     },
 }

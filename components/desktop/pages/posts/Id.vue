@@ -9,7 +9,9 @@
         <div class="header"
              style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
             <p class="has-text-black-ter"
-               style="font-size: 16px; font-weight: 600; word-break: break-word;">
+               style="font-size: 20px; font-weight: 600; word-break: break-word;">
+                <span v-if="post.area_name" class="has-text-primary">[{{ post.area_name }}]</span>
+                <span v-if="post.sub_type_name" class="has-text-warm-red">[{{ post.sub_type_name }}]</span>
                 {{ post.title }}
             </p>
             <div class="flex space-between align-items-center has-text-grey"

@@ -10,6 +10,26 @@
                 {{ board.name }}
             </option>
         </b-select>
+        <div class="flex" v-if="post.board_type === 'B102'">
+            <b-select v-model="post.area" class="category-select" style="margin-right: 20px;"
+                      placeholder="지역을 선택하세요" expanded>
+                <option
+                    v-for="area in areas"
+                    :value="area.cd"
+                    :key="area.name">
+                    {{ area.name }}
+                </option>
+            </b-select>
+            <b-select v-model="post.sub_type" class="category-select"
+                      placeholder="구매/판매" expanded>
+                <option
+                    v-for="type in subTypes"
+                    :value="type.cd"
+                    :key="type.name">
+                    {{ type.name }}
+                </option>
+            </b-select>
+        </div>
         <input class="input title-input" placeholder="제목" v-model="post.title"></input>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
         <div class="button-outer">
@@ -17,6 +37,9 @@
                 <strong>등록하기</strong>
             </button>
         </div>
+        {{ user }}
+        <br>
+        {{ boards }}
     </div>
 </template>
 
@@ -30,14 +53,37 @@ export default {
                 body: '',
                 board_type: null,
                 tags: null,
+                area: null,
+                sub_type: null,
             },
-            tags: '',
         }
     },
     computed: {
         boards () {
             const boards = [ ...this.$store.state.boards.boards ]
-            return boards
+            if (this.user && this.user.is_admin) {
+                return boards
+            }
+            return boards.filter(function (board) {
+                return !board.is_admin
+            })
+        },
+        areas () {
+            return this.$store.state.posts.areas
+        },
+        subTypes () {
+            return this.$store.state.posts.subTypes
+        },
+    },
+    watch: {
+        post: {
+            deep: true,
+            handler (value) {
+                if (value.board_type !== 'B102') {
+                    this.post.area = null
+                    this.post.sub_type = null
+                }
+            },
         },
     },
     methods: {
