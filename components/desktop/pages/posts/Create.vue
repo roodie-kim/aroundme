@@ -37,9 +37,6 @@
                 <strong>등록하기</strong>
             </button>
         </div>
-        {{ user }}
-        <br>
-        {{ boards }}
     </div>
 </template>
 
