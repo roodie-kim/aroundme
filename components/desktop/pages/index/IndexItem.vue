@@ -61,7 +61,7 @@ export default {
             }
         },
         subTypeNameClass (post) {
-            return post.sub_type_name === '판매' ? 'has-text-primary' : 'has-text-warm-red'
+            return post.sub_type_name === '판매' ? 'has-text-twitter' : 'has-text-warm-red'
         },
     },
 }

@@ -11,6 +11,8 @@
                  style="border-bottom: 1px solid lightgrey; padding-bottom: 8px;">
                 <p class="has-text-black-ter"
                    style="font-size: 16px; font-weight: 600">
+                    <span v-if="post.area_name" class="has-text-primary">[{{ post.area_name }}]</span>
+                    <span v-if="post.sub_type_name" :class="subTypeNameClass(post)">[{{ post.sub_type_name }}]</span>
                     {{ post.title }}
                 </p>
                 <div class="flex space-between align-items-center has-text-grey"
@@ -24,7 +26,7 @@
                         </p>
                         <p v-if="post.is_mine" style="margin-right: 5px;">|</p>
                         <p v-if="post.is_mine"
-                           @click="deletePost()"
+                           @click="customDelete()"
                            style="margin-right: 5px; cursor: pointer;">
                             삭제
                         </p>

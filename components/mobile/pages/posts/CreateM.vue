@@ -10,6 +10,26 @@
                 {{ board.name }}
             </option>
         </b-select>
+        <div class="flex" v-if="post.board_type === 'B102'">
+            <b-select v-model="post.area" class="category-select" style="margin-right: 20px;"
+                      placeholder="지역" expanded>
+                <option
+                    v-for="area in areas"
+                    :value="area.cd"
+                    :key="area.name">
+                    {{ area.name }}
+                </option>
+            </b-select>
+            <b-select v-model="post.sub_type" class="category-select"
+                      placeholder="구매/판매" expanded>
+                <option
+                    v-for="type in subTypes"
+                    :value="type.cd"
+                    :key="type.name">
+                    {{ type.name }}
+                </option>
+            </b-select>
+        </div>
         <input class="input title-input" placeholder="제목" v-model="post.title"></input>
         <div ref="quillEditor" class="quill-editor" @click="focusOnQuill"></div>
         <div class="button-outer">

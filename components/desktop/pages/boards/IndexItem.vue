@@ -30,7 +30,7 @@
             <p class="flex has-text-black-ter ellipsis"
                style="font-size: 16px; font-weight: 600; padding-top: 8px; margin-bottom: 3px;">
                 <span v-if="post.area_name" class="has-text-primary">[{{ post.area_name }}]</span>
-                <span v-if="post.sub_type_name" class="has-text-warm-red">[{{ post.sub_type_name }}]</span>
+                <span v-if="post.sub_type_name" :class="subTypeNameClass(post)">[{{ post.sub_type_name }}]</span>
                 {{ post.title }}
             </p>
             <!--<p class="has-text-grey-dark ellipsis-multiple-line"-->
@@ -85,6 +85,9 @@ export default {
     methods: {
         moveToPost (id) {
             this.$router.push(`/posts/${id}`)
+        },
+        subTypeNameClass (post) {
+            return post.sub_type_name === '판매' ? 'has-text-twitter' : 'has-text-warm-red'
         },
     },
 }

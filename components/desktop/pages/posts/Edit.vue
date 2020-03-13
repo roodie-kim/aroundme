@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        {{ editedPost }}
         <h4 class="title is-size-4">수정하기</h4>
         <b-select v-model="editedPost.board_type" class="category-select"
                   placeholder="카테고리를 선택하세요" expanded>

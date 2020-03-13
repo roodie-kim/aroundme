@@ -11,7 +11,7 @@
             <p class="has-text-black-ter"
                style="font-size: 20px; font-weight: 600; word-break: break-word;">
                 <span v-if="post.area_name" class="has-text-primary">[{{ post.area_name }}]</span>
-                <span v-if="post.sub_type_name" class="has-text-warm-red">[{{ post.sub_type_name }}]</span>
+                <span v-if="post.sub_type_name" :class="subTypeNameClass(post)">[{{ post.sub_type_name }}]</span>
                 {{ post.title }}
             </p>
             <div class="flex space-between align-items-center has-text-grey"
@@ -23,7 +23,7 @@
                         수정
                     </p>
                     <p v-if="post.is_mine" style="margin-right: 5px;">|</p>
-                    <p v-if="post.is_mine" @click="deletePost()"
+                    <p v-if="post.is_mine" @click="customDelete()"
                        style="margin-right: 5px; cursor: pointer;">
                         삭제
                     </p>
@@ -85,9 +85,20 @@ export default {
         editPost () {
             this.$router.push(`/posts/${this.post.id}/edit`)
         },
+        customDelete () {
+            this.$buefy.dialog.confirm({
+                title: '글 삭제',
+                message: '정말 이 글을 삭제하시겠습니까?',
+                confirmText: '삭제하기',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => this.deletePost(),
+            })
+        },
         async deletePost () {
             const response = await this.$store.dispatch('posts/deletePost', this.post.id)
             if (response.status) {
+                this.$buefy.toast.open('삭제하였습니다.')
                 this.$router.go(-1)
             }
         },
@@ -99,6 +110,9 @@ export default {
             } else {
                 this.$router.go(-1)
             }
+        },
+        subTypeNameClass (post) {
+            return post.sub_type_name === '판매' ? 'has-text-twitter' : 'has-text-warm-red'
         },
     },
     mounted () {
